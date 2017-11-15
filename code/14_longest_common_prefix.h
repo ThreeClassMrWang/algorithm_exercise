@@ -5,6 +5,8 @@
 #ifndef LEETCODE_14_LONGEST_COMMON_PREFIX_H
 #define LEETCODE_14_LONGEST_COMMON_PREFIX_H
 
+//Write a function to find the longest common prefix string amongst an array of strings.
+
 #include <string>
 #include <vector>
 #include <climits>
