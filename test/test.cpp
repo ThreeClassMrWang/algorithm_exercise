@@ -9,6 +9,9 @@
 #include "14_longest_common_prefix.h"
 #include "20_valid_parentheses.h"
 #include "21_merge_two_sorted_lists.h"
+#include "26_remove_duplicates_from_sorted_array.h"
+#include "2_add_two_numbers.h"
+#include "3_longest_substring_without_repeating_characters.h"
 
 TEST(_test, hello) {
     std::string s = "Hello GoogleTest!";
@@ -136,8 +139,152 @@ TEST(merge_two_sorted_lists, test) {
     EXPECT_EQ(5, res->next->next->next->val);
     EXPECT_EQ(6, res->next->next->next->next->val);
 
+    // Delete
     for (auto &node : vectors)
         delete node;
+}
+
+TEST(remove_duplicates_from_sorted_array, test) {
+    std::vector<int> in;
+    int res;
+
+    in = {};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 0);
+
+    in = {1};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 1);
+    EXPECT_EQ(in[0], 1);
+
+    in = {1, 1, 1};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 1);
+    EXPECT_EQ(in[0], 1);
+
+    in = {1, 2, 3};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 3);
+    EXPECT_EQ(in[0], 1);
+    EXPECT_EQ(in[1], 2);
+    EXPECT_EQ(in[2], 3);
+
+    in = {1, 1, 2};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 2);
+    EXPECT_EQ(in[0], 1);
+    EXPECT_EQ(in[1], 2);
+
+    in = {1, 2, 2};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 2);
+    EXPECT_EQ(in[0], 1);
+    EXPECT_EQ(in[1], 2);
+
+    in = {1, 1, 2, 2};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 2);
+    EXPECT_EQ(in[0], 1);
+    EXPECT_EQ(in[1], 2);
+
+    in = {1, 1, 1, 2, 2};
+    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+    EXPECT_EQ(res, 2);
+    EXPECT_EQ(in[0], 1);
+    EXPECT_EQ(in[1], 2);
+}
+
+TEST(add_two_number, test) {
+    typedef leetcode::AddTwoNumbers::ListNode ListNode;
+    constexpr int N = 10;
+    std::vector<ListNode *> vectors;
+    for (int i = 0; i < N; i++)
+        vectors.push_back(new ListNode(i));
+
+    ListNode *l1, *l2, *res;
+
+    l1 = nullptr;
+    l2 = nullptr;
+    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+    EXPECT_EQ(res, nullptr);
+
+    // Reset
+    for (int i = 0; i < N; i++) {
+        vectors[i]->val = i;
+        vectors[i]->next = nullptr;
+    }
+
+    l1 = vectors[1];
+    l1->next = vectors[2];
+    l1->next->next = vectors[3];
+    l2 = nullptr;
+    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+    EXPECT_EQ(res->val, 1);
+    EXPECT_EQ(res->next->val, 2);
+    EXPECT_EQ(res->next->next->val, 3);
+
+    // Reset
+    for (int i = 0; i < N; i++) {
+        vectors[i]->val = i;
+        vectors[i]->next = nullptr;
+    }
+
+    l1 = vectors[1];
+    l1->next = vectors[2];
+    l1->next->next = vectors[3];
+    l2 = vectors[4];
+    l2->next = vectors[5];
+    l2->next->next = vectors[6];
+    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+    EXPECT_EQ(res->val, 5);
+    EXPECT_EQ(res->next->val, 7);
+    EXPECT_EQ(res->next->next->val, 9);
+
+    // Reset
+    for (int i = 0; i < N; i++) {
+        vectors[i]->val = i;
+        vectors[i]->next = nullptr;
+    }
+
+    l1 = vectors[9];
+    l2 = vectors[1];
+    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+    EXPECT_EQ(res->val, 0);
+    EXPECT_EQ(res->next->val, 1);
+
+
+    // Delete
+    for (auto &node : vectors)
+        delete node;
+}
+
+TEST(longest_substring_without_repeating_characters, test) {
+    std::string in;
+    int len;
+
+    in = "";
+    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+    EXPECT_EQ(len, 0);
+
+    in = "1111";
+    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+    EXPECT_EQ(len, 1);
+
+    in = "123123";
+    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+    EXPECT_EQ(len, 3);
+
+    in = "1231234";
+    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+    EXPECT_EQ(len, 4);
+
+    in = "123434567";
+    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+    EXPECT_EQ(len, 5);
+
+    in = "dvdf";
+    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+    EXPECT_EQ(len, 3);
 }
 
 GTEST_API_ int main(int argc, char** argv){
