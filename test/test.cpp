@@ -15,6 +15,7 @@
 #include "5_longest_palindromic_substring.h"
 #include "6_zigzag_conversion.h"
 #include "8_string_to_integer.h"
+#include "11_container_with_most_water.h"
 
 TEST(_test, hello) {
     std::string s = "Hello GoogleTest!";
@@ -375,6 +376,28 @@ TEST(string_to_integer, test) {
     in = "   - 321";
     res = leetcode::StringToInteger::myAtoi(in);
     EXPECT_EQ(res, 0);
+}
+
+TEST(container_with_most_water, test) {
+    std::vector<int> in;
+    int res;
+
+    in = {1};
+    res = leetcode::ContainerWithMostWater::maxArea(in);
+    EXPECT_EQ(res, -1);
+
+    in = {1, 2};
+    res = leetcode::ContainerWithMostWater::maxArea(in);
+    EXPECT_EQ(res, 1);
+
+    in = {0, 1};
+    res = leetcode::ContainerWithMostWater::maxArea(in);
+    EXPECT_EQ(res, 0);
+
+    in = {1, 2, 3, 2};
+    res = leetcode::ContainerWithMostWater::maxArea(in);
+    EXPECT_EQ(res, 4);
+
 }
 
 GTEST_API_ int main(int argc, char** argv){
