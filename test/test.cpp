@@ -12,6 +12,9 @@
 #include "26_remove_duplicates_from_sorted_array.h"
 #include "2_add_two_numbers.h"
 #include "3_longest_substring_without_repeating_characters.h"
+#include "5_longest_palindromic_substring.h"
+#include "6_zigzag_conversion.h"
+#include "8_string_to_integer.h"
 
 TEST(_test, hello) {
     std::string s = "Hello GoogleTest!";
@@ -285,6 +288,93 @@ TEST(longest_substring_without_repeating_characters, test) {
     in = "dvdf";
     len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
     EXPECT_EQ(len, 3);
+}
+
+TEST(longest_palindromic_substring, test) {
+    std::string in, res;
+
+    in = "";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, "");
+
+    in = "a";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, "a");
+
+    in = "babad";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, "bab");
+
+    in = "cbbd";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, "bb");
+
+    in = "aaaaa";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, in);
+
+    in = "bananas";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, "anana");
+
+    in = "tattarrattat";
+    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+    EXPECT_EQ(res, in);
+}
+
+TEST(zigzag_conversion, test) {
+    std::string in = "PAYPALISHIRING";
+    std::string res = leetcode::ZigZagConversion::convert(in, 3);
+    EXPECT_EQ(res, "PAHNAPLSIIGYIR");
+
+    in = "ABC";
+    res = leetcode::ZigZagConversion::convert(in, 2);
+    EXPECT_EQ(res, "ACB");
+
+    in = "ABCD";
+    res = leetcode::ZigZagConversion::convert(in, 2);
+    EXPECT_EQ(res, "ACBD");
+
+    in = "A";
+    res = leetcode::ZigZagConversion::convert(in, 1);
+    EXPECT_EQ(res, "A");
+}
+
+TEST(string_to_integer, test) {
+    std::string in;
+    int res;
+
+    in = "";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 0);
+
+    in = "   12ugvbsdb";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 12);
+
+    in = "jsbd-176327  ";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 0);
+
+    in = "1-29ue28676832";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 1);
+
+    in = "-7562kshkhd";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, -7562);
+
+    in = "826738923647829368923";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 0);
+
+    in = "+-2";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 0);
+
+    in = "   - 321";
+    res = leetcode::StringToInteger::myAtoi(in);
+    EXPECT_EQ(res, 0);
 }
 
 GTEST_API_ int main(int argc, char** argv){
