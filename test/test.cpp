@@ -16,6 +16,10 @@
 #include "6_zigzag_conversion.h"
 #include "8_string_to_integer.h"
 #include "11_container_with_most_water.h"
+#include "12_integer_to_roman.h"
+#include "15_3sum.h"
+#include "16_3sum_closest.h"
+#include "17_letter_combinations_of_a_phone_number.h"
 
 TEST(_test, hello) {
     std::string s = "Hello GoogleTest!";
@@ -383,21 +387,60 @@ TEST(container_with_most_water, test) {
     int res;
 
     in = {1};
-    res = leetcode::ContainerWithMostWater::maxArea(in);
+    res = leetcode::ContainerWithMostWater::maxArea2(in);
     EXPECT_EQ(res, -1);
 
     in = {1, 2};
-    res = leetcode::ContainerWithMostWater::maxArea(in);
+    res = leetcode::ContainerWithMostWater::maxArea2(in);
     EXPECT_EQ(res, 1);
 
     in = {0, 1};
-    res = leetcode::ContainerWithMostWater::maxArea(in);
+    res = leetcode::ContainerWithMostWater::maxArea2(in);
     EXPECT_EQ(res, 0);
 
     in = {1, 2, 3, 2};
-    res = leetcode::ContainerWithMostWater::maxArea(in);
+    res = leetcode::ContainerWithMostWater::maxArea2(in);
     EXPECT_EQ(res, 4);
 
+}
+
+TEST(integer_to_roman, test) {
+    int in;
+    std::string res;
+
+    in = 39;
+    res = leetcode::IntegerToRoman::intToRoman(in);
+    EXPECT_EQ(res, "XXXIX");
+}
+
+TEST(three_sum, test) {
+    std::vector<int> in {-1, 0, 1, 2, -1, -4};
+    std::vector<std::vector<int>> res = leetcode::ThreeSum::threeSum2(in);
+    EXPECT_EQ(res.size(), 2);
+}
+
+TEST(three_sum_closet, test) {
+    std::vector<int> in {-1, 2, 1, -4};
+    int target = 1;
+    int res = leetcode::ThreeSumCloset::threeSumClosest(in, 1);
+    EXPECT_EQ(res, 2);
+}
+
+TEST(letter_combinations, test) {
+    std::string in;
+
+    in = "23";
+    auto res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 9);
+
+//    in = "0";
+//    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+//    EXPECT_EQ(res.size(), 1);
+//    EXPECT_EQ(res[0], " ");
+
+    in = "239";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 36);
 }
 
 GTEST_API_ int main(int argc, char** argv){

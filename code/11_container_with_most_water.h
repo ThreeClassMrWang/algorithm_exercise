@@ -14,7 +14,7 @@
 namespace leetcode {
     class ContainerWithMostWater {
     public:
-        static int maxArea(std::vector<int>& height) {
+        static int maxArea1(std::vector<int>& height) {
             if (height.size() < 2) return -1;
             int max = 0;
             for (int i = 1; i < height.size(); ++i) {
@@ -23,6 +23,20 @@ namespace leetcode {
                     if (area > max)
                         max = area;
                 }
+            }
+            return max;
+        }
+
+        // Avoid repeated search
+        static int maxArea2(std::vector<int>& height) {
+            if (height.size() < 2) return -1;
+            int max = 0;
+            int lidx = 0, ridx = (int)height.size() - 1;
+            while (lidx < ridx) {
+                int area = (ridx - lidx) * std::min(height[lidx], height[ridx]);
+                if (area > max) max = area;
+                if (height[lidx] < height[ridx]) lidx++;
+                else ridx--;
             }
             return max;
         }
