@@ -20,11 +20,12 @@
 #include <stdexcept>
 #include <map>
 #include <unordered_map>
+#include <algorithm>
 
 namespace leetcode {
     class TwoSum {
     public:
-        std::vector<int> twoSum_1(std::vector<int> &nums, int targets) {
+        static std::vector<int> twoSum_1(std::vector<int> &nums, int targets) {
             for (std::size_t i = 0; i < nums.size(); ++i)
                 for (std::size_t j = i + 1; j < nums.size(); ++j) {
                     if (nums[i] + nums[j] == targets)
@@ -34,7 +35,7 @@ namespace leetcode {
             throw std::runtime_error("No two sum solution");
         }
 
-        std::vector<int> twoSum_2(std::vector<int> &nums, int targets) {
+        static std::vector<int> twoSum_2(std::vector<int> &nums, int targets) {
             std::map<int, std::size_t> m;
             std::map<int, std::size_t>::iterator it;
             for (std::size_t i = 0; i < nums.size(); ++i) {
@@ -47,7 +48,7 @@ namespace leetcode {
             throw std::runtime_error("No two sum solution");
         }
 
-        std::vector<int> twoSum_3(std::vector<int> &nums, int targets) {
+        static std::vector<int> twoSum_3(std::vector<int> &nums, int targets) {
             std::unordered_map<int, std::size_t> m;
             std::unordered_map<int, std::size_t>::iterator it;
             for (std::size_t i = 0; i < nums.size(); ++i) {

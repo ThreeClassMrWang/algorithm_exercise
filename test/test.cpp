@@ -20,6 +20,8 @@
 #include "15_3sum.h"
 #include "16_3sum_closest.h"
 #include "17_letter_combinations_of_a_phone_number.h"
+#include "18_4sum.h"
+#include "1_search_array.hpp"
 
 TEST(_test, hello) {
     std::string s = "Hello GoogleTest!";
@@ -433,14 +435,89 @@ TEST(letter_combinations, test) {
     auto res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
     EXPECT_EQ(res.size(), 9);
 
-//    in = "0";
-//    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-//    EXPECT_EQ(res.size(), 1);
-//    EXPECT_EQ(res[0], " ");
+    in = "01";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 1);
+    EXPECT_EQ(res[0], " ");
 
     in = "239";
     res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
     EXPECT_EQ(res.size(), 36);
+
+    in = "";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 0);
+
+    in = "1";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 0);
+
+    in = "123";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 9);
+
+    in = "10";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 1);
+    EXPECT_EQ(res[0], " ");
+
+    in = "023";
+    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+    EXPECT_EQ(res.size(), 9);
+}
+
+TEST(four_sum, test) {
+    std::vector<int> in;
+    std::vector<std::vector<int>> res;
+
+    in = {};
+    res = leetcode::FourSum::fourSum(in, 0);
+    EXPECT_EQ(res.empty(), true);
+
+    in = {1, 0, -1, 0, -2, 2};
+    res = leetcode::FourSum::fourSum(in, 0);
+    EXPECT_EQ(res.size(), 3);
+}
+
+TEST(search_array, test) {
+    std::vector<std::vector<int>> in;
+    int target;
+    bool res;
+
+    in = {};
+    target = 10;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, false);
+
+    in = { {1, 2, 3}, {3, 4, 5}};
+    target = 3;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, true);
+
+    in = {{}};
+    target = 3;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, false);
+
+    in = {{1}};
+    target = 10;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, false);
+
+    in = {{1}};
+    target = 1;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, true);
+
+    in = {{2,5,7,8,10}, {3,4,5,6,7}};
+    target = 0;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, false);
+
+    in = {{1,2,8,9},{2,4,9,12},{4,7,10,13},{6,8,11,15}};
+    target = 7;
+    res = offer::SearchArray::searchArray(target, in);
+    EXPECT_EQ(res, true);
 }
 
 GTEST_API_ int main(int argc, char** argv){

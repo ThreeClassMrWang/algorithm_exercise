@@ -1,8 +1,12 @@
 add_subdirectory(googletest)
 include_directories(googletest/include)
 
-include_directories(../code)
+include_directories(../code ../offer)
 
 add_executable(_test test.cpp)
-target_link_libraries(_test gtest LEETCODE)
+target_link_libraries(_test gtest LEETCODE OFFER)
+
+include_directories(../algorithm)
+add_executable(_test2 test2.cpp)
+target_link_libraries(_test2 gtest ALGORITHM)
 

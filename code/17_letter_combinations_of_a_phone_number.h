@@ -14,36 +14,28 @@ namespace leetcode {
     class LetterCombinationsOfAPhoneNumber {
     public:
         static std::vector<std::string> letterCombinations(std::string digits) {
-            std::vector<std::string> res;
-            for (size_t i = 0; i < digits.size(); ++i)
-                letterCombinations(digits, i, res);
+            if (digits.empty() || digits == "1") return std::vector<std::string>();
+            std::vector<std::string> res = {""};
+            for (int i = 0; i < digits.size(); ++i) {
+                if (digits[i] == '1') continue;
+                std::vector<std::string> r;
+                const std::string s = map[digits[i] - '0'];
+                for (int j = 0; j < res.size(); ++j) {
+                    for (int k = 0; k < s.size(); ++k)
+                        r.emplace_back(std::string(res[j] + s[k]));
+                }
+                res = r;
+            }
+
             return res;
         }
 
     private:
-        static std::vector<std::string> letterCombinations(const std::string &digits, size_t idx, std::vector<std::string> &old_res) {
-            if (!checkInteger(digits[idx])) throw std::invalid_argument("digits should be only contains numbers");
-            std::vector<std::string> r;
-            for (const auto &c : map[digits[idx]-'0']) {
-                if (old_res.empty())
-                    r.push_back("" + c);
-                else {
-                    for (const auto &s : old_res)
-                        r.push_back(s + c);
-                }
-            }
-            return r;
-        }
-
-        static bool checkInteger(const char c) {
-            return c >= '0' && c <= '9';
-        }
-
         static std::vector<std::string> map;
     };
 
     std::vector<std::string> LetterCombinationsOfAPhoneNumber::map = {
-            " ", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
+            " ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"
     };
 }
 
