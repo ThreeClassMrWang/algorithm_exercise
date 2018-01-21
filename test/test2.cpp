@@ -11,9 +11,13 @@
 #include <9_quick_sort_3way.hpp>
 #include <11_MaxPQ.hpp>
 #include <10_heap_sort.hpp>
+#include <15_binary_search.hpp>
 #include "gtest/gtest.h"
 #include "SortUtil.hpp"
 #include "2_select_sort.hpp"
+#include "12_find_repeat_element.hpp"
+#include "13_kandall_distance.hpp"
+#include "14_select_k.hpp"
 
 TEST(sort, test) {
     using namespace algorithm;
@@ -81,6 +85,73 @@ TEST(MaxPQ, test) {
     }
     EXPECT_EQ(true, SortUtil::checkSorted(v));
 }
+
+TEST(find_repeat_element, test) {
+    using namespace algorithm;
+
+    std::vector<int> in;
+    int res;
+
+    in = {2,4,1,5,7,6,1,9,0,2};
+    res = FindRepeatElement::findRepeatElement(in);
+    EXPECT_TRUE(res == 1 | res == 2);
+
+    in = {0 , 0};
+    res = FindRepeatElement::findRepeatElement(in);
+    EXPECT_EQ(res, 0);
+
+    in.clear();
+    for (int i = 1; i <= 1000; ++i)
+        in.push_back(i);
+    in.push_back(253);
+    res = FindRepeatElement::findUniqueNumber_1(in);
+    EXPECT_EQ(res, 253);
+    res = FindRepeatElement::findUniqueNumber_2(in);
+    EXPECT_EQ(res, 253);
+}
+
+TEST(kandall_distance, test) {
+    using namespace algorithm;
+
+    std::vector<int> a;
+    std::vector<int> b;
+    int res;
+
+    a = {0, 3, 1, 6, 2, 5, 4};
+    b = {1, 0, 3, 6, 4, 2, 5};
+    res = KandallDistance::calcutate(a, b);
+    EXPECT_EQ(res, 4);
+
+    a = {1, 2, 3, 4, 5};
+    b = {3, 4, 1, 2, 5};
+    res = KandallDistance::calcutate(a, b);
+    EXPECT_EQ(res, 4);
+
+    a = {0, 3, 2, 4, 1};
+    b = {4, 0, 3, 2, 1};
+    res = KandallDistance::calcutate(a, b);
+    EXPECT_EQ(res, 3);
+
+    a = {1, 2, 3, 4, 5};
+    b = {1, 2, 3, 4, 5};
+    res = KandallDistance::calcutate(a, b);
+    EXPECT_EQ(res, 0);
+}
+
+TEST(select_k, test) {
+    using namespace algorithm;
+
+    std::vector<int> in;
+    int res;
+
+    in = {0, 3, 1, 6, 2, 5, 4};
+    res = SelectK::select(in, 2);
+    EXPECT_EQ(res, 2);
+
+    std::sort(in.begin(), in.end());
+    EXPECT_EQ(1, BinarySearch::search(in, 1));
+}
+
 GTEST_API_ int main(int argc, char** argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

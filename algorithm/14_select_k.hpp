@@ -1,29 +1,30 @@
 //
-// Created by wcj on 1/19/18.
+// Created by wcj on 1/20/18.
 //
 
-#ifndef LEETCODE_7_QUICK_SORT_HPP
-#define LEETCODE_7_QUICK_SORT_HPP
+#ifndef LEETCODE_14_SELECT_K_HPP
+#define LEETCODE_14_SELECT_K_HPP
 
+#include <cstdio>
 #include <vector>
 #include "SortUtil.hpp"
 
 namespace algorithm {
 
-class QuickSort {
+class SelectK {
 public:
-    static void sort(std::vector<int>& v) {
-        sort(v, 0, v.size() - 1);
+    static int select(std::vector<int>& v, size_t k) {
+        ssize_t lo = 0, hi = v.size() - 1;
+        while (hi > lo) {
+            ssize_t j = partition(v, lo, hi);
+            if (j == k) return v[k];
+            else if (j > k) hi = j - 1;
+            else lo = j + 1;
+        }
+        return v[k];
     }
 
 private:
-    static void sort(std::vector<int>& v, ssize_t lo, ssize_t hi) {
-        if (lo >= hi) return;
-        ssize_t j = partition(v, lo, hi);
-        sort(v, lo, j - 1);
-        sort(v, j + 1, hi);
-    }
-
     static ssize_t partition(std::vector<int>& v, ssize_t lo, ssize_t hi) {
         int target = v[lo];
         ssize_t i = lo, j = hi + 1;
@@ -34,10 +35,11 @@ private:
             SortUtil::exch(v[i], v[j]);
         }
         SortUtil::exch(v[lo], v[j]);
+
         return j;
     }
 };
 
 }
 
-#endif //LEETCODE_7_QUICK_SORT_HPP
+#endif //LEETCODE_14_SELECT_K_HPP
