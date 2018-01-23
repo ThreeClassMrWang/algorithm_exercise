@@ -18,6 +18,8 @@
 #include "12_find_repeat_element.hpp"
 #include "13_kandall_distance.hpp"
 #include "14_select_k.hpp"
+#include "19_kmp.hpp"
+#include "20_horspool.hpp"
 
 TEST(sort, test) {
     using namespace algorithm;
@@ -150,6 +152,27 @@ TEST(select_k, test) {
 
     std::sort(in.begin(), in.end());
     EXPECT_EQ(1, BinarySearch::search(in, 1));
+}
+
+TEST(kmp, test) {
+    using namespace algorithm;
+
+    std::string txt{"bacbababadababacambabacaddababacasdsd"};
+    std::string pattern{"ababaca"};
+
+    ssize_t res = KMP::search(pattern, txt);
+    EXPECT_EQ(res, 10);
+}
+
+TEST(korspool, test) {
+    using namespace algorithm;
+
+    std::string txt{"bacbababadababacambabacaddababacasdsd"};
+    std::string pattern{"ababaca"};
+
+    ssize_t res = HorspoolSearch::search(txt, pattern);
+    EXPECT_EQ(res, 10);
+
 }
 
 GTEST_API_ int main(int argc, char** argv) {

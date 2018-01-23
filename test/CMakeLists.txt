@@ -10,3 +10,7 @@ include_directories(../algorithm)
 add_executable(_test2 test2.cpp)
 target_link_libraries(_test2 gtest ALGORITHM)
 
+include_directories(../interview)
+add_executable(_test3 test3.cpp)
+target_link_libraries(_test3 INTERVIEW gtest)
+
