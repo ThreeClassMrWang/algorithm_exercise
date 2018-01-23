@@ -9,6 +9,9 @@
 #include "140_the_sample_structure.hpp"
 #include "141_same_struct.hpp"
 #include "8_fibonacci.hpp"
+#include "9_min_path.hpp"
+#include "10_min_money.hpp"
+#include "11_money_method.hpp"
 
 using namespace interview;
 
@@ -140,6 +143,97 @@ TEST(fabonacci, test) {
 
     EXPECT_EQ(Fibonacci::fibonacci_cur(7), 21);
     EXPECT_EQ(Fibonacci::fibonacci_iter(7), 21);
+}
+
+TEST(min_path, test) {
+    std::vector<std::vector<int>> in;
+    int res;
+
+    in = {{1,3,5,9},{8,1,3,4},{5,0,6,1},{8,8,4,0}};
+    res = MinPath::find(in);
+    EXPECT_EQ(res, 12);
+
+    res = MinPath::find_op(in);
+    EXPECT_EQ(res, 12);
+}
+
+TEST(min_money, test) {
+    std::vector<int> arr;
+    int aim, res;
+
+    arr = {5, 2, 3};
+    aim = 20;
+    res = MinMoney::find1(arr, aim);
+    EXPECT_EQ(res, 4);
+
+    aim = 0;
+    res = MinMoney::find1(arr, aim);
+    EXPECT_EQ(res, 0);
+
+    arr = {3, 5};
+    aim = 2;
+    res = MinMoney::find1(arr, aim);
+    EXPECT_EQ(res, -1);
+
+    arr = {5, 2, 3};
+    aim = 20;
+    res = MinMoney::find1_op(arr, aim);
+    EXPECT_EQ(res, 4);
+
+    aim = 0;
+    res = MinMoney::find1_op(arr, aim);
+    EXPECT_EQ(res, 0);
+
+    arr = {3, 5};
+    aim = 2;
+    res = MinMoney::find1_op(arr, aim);
+    EXPECT_EQ(res, -1);
+
+    arr = {5, 2, 3};
+    aim = 20;
+    res = MinMoney::find2(arr, aim);
+    EXPECT_EQ(res, -1);
+
+    arr = {5, 2, 5, 3};
+    aim = 10;
+    res = MinMoney::find2(arr, aim);
+    EXPECT_EQ(res, 2);
+
+    aim = 15;
+    res = MinMoney::find2(arr, aim);
+    EXPECT_EQ(res, 4);
+
+    aim = 0;
+    res = MinMoney::find2(arr, aim);
+    EXPECT_EQ(res, 0);
+
+    arr = {5, 10, 25, 1};
+    aim = 0;
+    res = MoneyMethod::find(arr, aim);
+    EXPECT_EQ(res, 1);
+
+    aim = 15;
+    res = MoneyMethod::find(arr, aim);
+    EXPECT_EQ(res, 6);
+
+    arr = {3, 5};
+    aim = 2;
+    res = MoneyMethod::find(arr, aim);
+    EXPECT_EQ(res, 0);
+
+    arr = {5, 10, 25, 1};
+    aim = 0;
+    res = MoneyMethod::find_op(arr, aim);
+    EXPECT_EQ(res, 1);
+
+    aim = 15;
+    res = MoneyMethod::find_op(arr, aim);
+    EXPECT_EQ(res, 6);
+
+    arr = {3, 5};
+    aim = 2;
+    res = MoneyMethod::find_op(arr, aim);
+    EXPECT_EQ(res, 0);
 }
 
 GTEST_API_ int main(int argc, char** argv) {
