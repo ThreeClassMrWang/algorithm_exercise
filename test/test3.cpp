@@ -3,6 +3,7 @@
 //
 
 #include <7_is_banlance_tree.hpp>
+#include <15_max_public_substring.hpp>
 #include "gtest/gtest.h"
 #include "354_max_length.hpp"
 #include "356_subarray_max_length.hpp"
@@ -12,6 +13,11 @@
 #include "9_min_path.hpp"
 #include "10_min_money.hpp"
 #include "11_money_method.hpp"
+#include "12_max_increase_subarray.hpp"
+#include "13_hanoi.hpp"
+#include "14_max_public_subarray.hpp"
+#include "15_max_public_substring.hpp"
+#include "16_min_edit_cost.hpp"
 
 using namespace interview;
 
@@ -233,6 +239,64 @@ TEST(min_money, test) {
     arr = {3, 5};
     aim = 2;
     res = MoneyMethod::find_op(arr, aim);
+    EXPECT_EQ(res, 0);
+}
+
+TEST(max_increase_subarray, test) {
+    std::vector<int> arr, res, expect;
+
+    arr = {2,1,5,3,6,4,8,9,7};
+    res = MaxIncreaseSubArray::find(arr);
+    expect = {1,3,4,8,9};
+    EXPECT_EQ(res, expect);
+
+    res = MaxIncreaseSubArray::find(arr);
+    EXPECT_EQ(res, expect);
+}
+
+TEST(hanoi, test) {
+    std::string out;
+    Hanoi::move(out, 1);
+    out += "+++++++++++++\n";
+    Hanoi::move(out, 2);
+    out += "+++++++++++++\n";
+    Hanoi::move(out, 3);
+    out += "+++++++++++++\n";
+
+}
+
+TEST(max_public_sub_array, test) {
+    std::string str1, str2, res;
+
+    str1 = "1A2C3D4B56";
+    str2 = "B1D23CA45B6A";
+    res = MaxPublicSubArray::find(str1, str2);
+    EXPECT_EQ(true, res == std::string("123456") || res == std::string("12C4B6"));
+}
+
+TEST(max_public_substring, test) {
+    std::string str1, str2, res;
+
+    str1 = "1AB2345CD";
+    str2 = "12345EF";
+    res = MaxPublicSubString::find(str1, str2);
+    EXPECT_EQ(res, std::string("2345"));
+}
+
+TEST(min_edit_cost, test) {
+    std::string str1, str2;
+    std::size_t res;
+
+    str1 = "abc";
+    str2 = "adc";
+    res = MinEditCost::cost(str1, str2, 5, 3, 2);
+    EXPECT_EQ(res, 2);
+
+    res = MinEditCost::cost(str1, str2, 5, 3, 100);
+    EXPECT_EQ(res, 8);
+
+    str2 = "abc";
+    res = MinEditCost::cost(str1, str2, 5, 3, 2);
     EXPECT_EQ(res, 0);
 }
 

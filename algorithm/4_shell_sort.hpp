@@ -15,7 +15,7 @@ public:
     static void sort(std::vector<int>& v) {
         std::size_t N = v.size();
         std::size_t h = 1;
-        while (h < N/3) h = h << 1 + h + 1;
+        while (h < N/3) h = ((h << 1) + h) + 1;
         while (h >= 1)  {
             for (std::size_t i = h; i < N; ++i) {
                 std::size_t j = i;
