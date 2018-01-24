@@ -18,6 +18,7 @@
 #include "14_max_public_subarray.hpp"
 #include "15_max_public_substring.hpp"
 #include "16_min_edit_cost.hpp"
+#include "17_n_queue.hpp"
 
 using namespace interview;
 
@@ -161,6 +162,10 @@ TEST(min_path, test) {
 
     res = MinPath::find_op(in);
     EXPECT_EQ(res, 12);
+
+    in = {{-2,-3,3}, {-5,-10,1}, {0,30,-5}};
+    res = MinPath::find(in);
+    EXPECT_EQ(res, -21);
 }
 
 TEST(min_money, test) {
@@ -298,6 +303,14 @@ TEST(min_edit_cost, test) {
     str2 = "abc";
     res = MinEditCost::cost(str1, str2, 5, 3, 2);
     EXPECT_EQ(res, 0);
+}
+
+TEST(n_queue, test) {
+    EXPECT_EQ(0, NQueue::find(0));
+    EXPECT_EQ(1, NQueue::find(1));
+    EXPECT_EQ(0, NQueue::find(2));
+    EXPECT_EQ(0, NQueue::find(3));
+    EXPECT_EQ(92, NQueue::find(8));
 }
 
 GTEST_API_ int main(int argc, char** argv) {
