@@ -20,6 +20,14 @@
 #include "14_select_k.hpp"
 #include "19_kmp.hpp"
 #include "20_horspool.hpp"
+#include "GraphUtil.hpp"
+#include "21_graph_dfs.hpp"
+#include "22_graph_bfs.hpp"
+#include "23_graph_cc.hpp"
+#include "24_graph_cycle.hpp"
+#include "25_graph_twocolor.hpp"
+
+using namespace algorithm;
 
 TEST(sort, test) {
     using namespace algorithm;
@@ -172,6 +180,68 @@ TEST(korspool, test) {
 
     ssize_t res = HorspoolSearch::search(txt, pattern);
     EXPECT_EQ(res, 10);
+}
+
+TEST(graphutil, test) {
+    std::string filename = "../../data/tinyG.txt";
+    GraphFactory tinyGraphFactory{filename};
+    auto tinyGraph = tinyGraphFactory.genGraph();
+    std::cout << tinyGraph->toString() << std::endl;
+
+    filename = "../../data/routes.txt";
+    SymbolGraphFactory movieGraphFactory{filename};
+    auto movieGraph = movieGraphFactory.genSymbolGraph();
+    std::cout << movieGraph->toString() << std::endl;
+}
+
+TEST(dfs, test) {
+    std::string filename = "../../data/tinyG.txt";
+    GraphFactory tinyGraphFactory{filename};
+    auto tinyGraph = tinyGraphFactory.genGraph();
+
+    DFS dfs(tinyGraph, 1);
+    auto path = dfs.pathTo(5);
+    while (!path->empty()) {
+        std::cout << std::to_string(path->top()) << " ";
+        path->pop();
+    }
+    std::cout << std::endl;
+}
+
+TEST(bfs, test) {
+    std::string filename = "../../data/tinyG.txt";
+    GraphFactory tinyGraphFactory{filename};
+    auto tinyGraph = tinyGraphFactory.genGraph();
+
+    BFS bfs(tinyGraph, 4);
+    auto path = bfs.pathTo(1);
+    while (!path->empty()) {
+        std::cout << std::to_string(path->top()) << " ";
+        path->pop();
+    }
+    std::cout << std::endl;
+}
+
+TEST(cc, test) {
+    std::string filename = "../../data/tinyG.txt";
+    GraphFactory tinyGraphFactory{filename};
+    auto tinyGraph = tinyGraphFactory.genGraph();
+
+    CC cc{tinyGraph};
+    std::cout << "Count: " << std::to_string(cc.count()) << std::endl;
+    EXPECT_EQ(cc.count(), 3);
+}
+
+TEST(cycle_twocolor, test) {
+    std::string filename = "../../data/tinyG.txt";
+    GraphFactory tinyGraphFactory{filename};
+    auto tinyGraph = tinyGraphFactory.genGraph();
+
+    Cycle cycle(tinyGraph);
+    EXPECT_EQ(true, cycle.hasCycle());
+
+    TwoColor twoColor(tinyGraph);
+    EXPECT_EQ(false, twoColor.isTwoColorable());
 
 }
 

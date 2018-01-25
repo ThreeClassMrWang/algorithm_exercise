@@ -19,6 +19,7 @@
 #include "15_max_public_substring.hpp"
 #include "16_min_edit_cost.hpp"
 #include "17_n_queue.hpp"
+#include "51_deform_string.hpp"
 
 using namespace interview;
 
@@ -311,6 +312,19 @@ TEST(n_queue, test) {
     EXPECT_EQ(0, NQueue::find(2));
     EXPECT_EQ(0, NQueue::find(3));
     EXPECT_EQ(92, NQueue::find(8));
+}
+
+TEST(deform_string, test) {
+    std::string str1, str2;
+
+    str1 = "123";
+    str2 = "231";
+    EXPECT_EQ(true, DeformString::isDeform_1(str1, str2));
+    EXPECT_EQ(true, DeformString::isDeform_2(str1, str2));
+
+    str2 = "2331";
+    EXPECT_EQ(false, DeformString::isDeform_1(str1, str2));
+    EXPECT_EQ(false, DeformString::isDeform_2(str1, str2));
 }
 
 GTEST_API_ int main(int argc, char** argv) {
