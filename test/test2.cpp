@@ -26,6 +26,13 @@
 #include "23_graph_cc.hpp"
 #include "24_graph_cycle.hpp"
 #include "25_graph_twocolor.hpp"
+#include "26_directed_dfs.hpp"
+#include "DigraphUtil.hpp"
+#include "27_diredted_dfs_path.hpp"
+#include "28_directed_bfs_path.hpp"
+#include "29_directed_cycle.hpp"
+#include "30_depth_first_order.hpp"
+#include "31_topological.hpp"
 
 using namespace algorithm;
 
@@ -243,6 +250,82 @@ TEST(cycle_twocolor, test) {
     TwoColor twoColor(tinyGraph);
     EXPECT_EQ(false, twoColor.isTwoColorable());
 
+}
+
+TEST(digraph_util, test) {
+    std::string filename {"../../data/tinyDG.txt"};
+    DigraphFactory digraphFactory {filename};
+    auto digraph = digraphFactory.genDigraph();
+    std::cout << digraph->toString() << std::endl;
+}
+
+TEST(directed_dfs_path, test) {
+    std::string filename{"../../data/tinyDG.txt"};
+    DigraphFactory digraphFactory{filename};
+    auto digraph = digraphFactory.genDigraph();
+
+    DirectedDFSPath directedDFSPath{digraph, 0};
+    auto path = directedDFSPath.pathTo(2);
+    while (!path->empty())
+        std::cout << path->top() << " ", path->pop();
+    std::cout << std::endl;
+
+    DirectedDFSPath directedDFSPath2{digraph, 7};
+    path = directedDFSPath2.pathTo(12);
+    while (!path->empty())
+        std::cout << path->top() << " ", path->pop();
+    std::cout << std::endl;
+
+    DirectedBFSPath directedBFSPath{digraph, 0};
+    path = directedBFSPath.pathTo(2);
+    while (!path->empty())
+        std::cout << path->top() << " ", path->pop();
+    std::cout << std::endl;
+
+    DirectedBFSPath directedBFSPath2{digraph, 7};
+    path = directedBFSPath2.pathTo(12);
+    while (!path->empty())
+        std::cout << path->top() << " ", path->pop();
+    std::cout << std::endl;
+}
+
+TEST(direted_cycle, test) {
+    std::string filename = "../../data/mediumDG.txt";
+    DigraphFactory digraphFactory {filename};
+    auto digraph = digraphFactory.genDigraph();
+
+    DirectedCycle cycle{digraph};
+    std::stack<int> path = cycle.cycle();
+    if (path.empty()) {
+        std::cout << "empty path, have no cycle\n";
+    } else {
+        while(!path.empty())
+            std::cout << std::to_string(path.top()) << " ", path.pop();
+        std::cout << std::endl;
+    }
+}
+
+TEST(depth_first_order, test) {
+    std::string filename{"../../data/tinyDG.txt"};
+    DigraphFactory digraphFactory{filename};
+    auto digraph = digraphFactory.genDigraph();
+
+    DepthFirstOrder depthFirstOrder{digraph};
+    std::queue<int> pre = depthFirstOrder.pre();
+    std::queue<int> post = depthFirstOrder.post();
+    std::stack<int> reversePost = depthFirstOrder.reversePost();
+
+    while (!pre.empty())
+        std::cout << std::to_string(pre.front()) << " ", pre.pop();
+    std::cout << std::endl;
+
+    while (!post.empty())
+        std::cout << std::to_string(post.front()) << " ", post.pop();
+    std::cout << std::endl;
+
+    while (!reversePost.empty())
+        std::cout << std::to_string(reversePost.top()) << " ", reversePost.pop();
+    std::cout << std::endl;
 }
 
 GTEST_API_ int main(int argc, char** argv) {
