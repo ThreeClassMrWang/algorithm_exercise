@@ -37,7 +37,7 @@ public:
         auto ptr = std::make_shared<Digraph>();
         for (const auto& v : adj_)
             for (const auto& w : v.second)
-                ptr->addEdge(v.first, w);
+                ptr->addEdge(w, v.first);       // reverse
 
         return ptr;
     }

@@ -33,6 +33,9 @@
 #include "29_directed_cycle.hpp"
 #include "30_depth_first_order.hpp"
 #include "31_topological.hpp"
+#include "32_kosaraju_cc.hpp"
+#include "EdgeWeightedGraphUtil.hpp"
+#include "33_LazyPrimMST.hpp"
 
 using namespace algorithm;
 
@@ -325,6 +328,37 @@ TEST(depth_first_order, test) {
 
     while (!reversePost.empty())
         std::cout << std::to_string(reversePost.top()) << " ", reversePost.pop();
+    std::cout << std::endl;
+}
+
+TEST(kosaraju_cc, test) {
+    std::string filename{"../../data/tinyDG.txt"};
+    DigraphFactory digraphFactory{filename};
+    auto digraph = digraphFactory.genDigraph();
+
+    KosarajuCC cc {digraph};
+    std::cout << "kosaraju cc: " << std::to_string(cc.count()) << std::endl;
+}
+
+TEST(edge_weighted_graph_util, test) {
+    std::string filename {"../../data/tinyEWG.txt"};
+    EdgeWeightedGraphFactory factory {filename};
+    auto graph = factory.genEdgeWeightedGraph();
+
+    std::cout << graph->toString() << std::endl;
+}
+
+TEST(lazy_prim_mst, test) {
+    std::string filename {"../../data/tinyEWG.txt"};
+    EdgeWeightedGraphFactory factory {filename};
+    auto graph = factory.genEdgeWeightedGraph();
+
+    LazyPrimMST lazyPrimMST{graph};
+    std::queue<Edge> mst = lazyPrimMST.edges();
+    while (!mst.empty()) {
+        std::cout << mst.front().toString() << " ";
+        mst.pop();
+    }
     std::cout << std::endl;
 }
 
