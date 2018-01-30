@@ -36,6 +36,9 @@
 #include "32_kosaraju_cc.hpp"
 #include "EdgeWeightedGraphUtil.hpp"
 #include "33_LazyPrimMST.hpp"
+#include "EdgeWeightedDigraphUtil.hpp"
+#include "34_prim_mst.hpp"
+#include "36_dijkstra.hpp"
 
 using namespace algorithm;
 
@@ -360,6 +363,42 @@ TEST(lazy_prim_mst, test) {
         mst.pop();
     }
     std::cout << std::endl;
+}
+
+TEST(prim_mst, test) {
+    std::string filename {"../../data/tinyEWG.txt"};
+    EdgeWeightedGraphFactory factory {filename};
+    auto graph = factory.genEdgeWeightedGraph();
+
+    PrimMST primMST{graph};
+    auto mst = primMST.edges();
+    for (const auto& e : mst)
+        if (e) std::cout << e->toString() << " ";
+    std::cout << std::endl;
+}
+
+TEST(edge_weighted_digraph, test) {
+    std::string filename = "../../data/tinyEWD.txt";
+    EdgeWeightedDigraphFactory factory { filename };
+    auto graph = factory.genDigraph();
+
+    std::cout << graph->toString() << std::endl;
+}
+
+TEST(dijkstra, test) {
+    std::string filename = "../../data/tinyEWD.txt";
+    EdgeWeightedDigraphFactory factory { filename };
+    auto graph = factory.genDigraph();
+
+    Dijkstra dijkstra {graph, 0};
+    std::shared_ptr<std::stack<DirectedEdge>> path = dijkstra.pathTo(6);
+    if (path == nullptr)
+        std::cout << "can not arrived" << std::endl;
+    else {
+        while (!path->empty())
+            std::cout << path->top().toString() << " ", path->pop();
+        std::cout << "weight: " << std::to_string(dijkstra.distTo(6)) << std::endl;
+    }
 }
 
 GTEST_API_ int main(int argc, char** argv) {
