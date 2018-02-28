@@ -8,7 +8,7 @@
 #include <string>
 
 namespace leetcode {
-    std::string version();
+std::string version();
 }
 
 #endif //LEETCODE_CODE_H

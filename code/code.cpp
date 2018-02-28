@@ -5,7 +5,7 @@
 #include "code.h"
 
 namespace leetcode {
-    std::string version() {
-        return std::string("v1_0");
-    }
+std::string version() {
+  return std::string("v1_0");
+}
 }

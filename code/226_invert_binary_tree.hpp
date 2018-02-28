@@ -21,24 +21,24 @@
 // Definition for a binary tree node.
 
 struct TreeNode {
-    int val;
-     TreeNode *left;
-     TreeNode *right;
-     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+  int val;
+  TreeNode *left;
+  TreeNode *right;
+  TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
 };
 
 class InvertBinaryTree {
-public:
-    static TreeNode* invertBinaryTree(TreeNode* root) {
-        if (!root) return nullptr;
+ public:
+  static TreeNode *invertBinaryTree(TreeNode *root) {
+    if (!root) return nullptr;
 
-        TreeNode *left = root->left;
-        TreeNode *right = root->right;
-        root->left = invertBinaryTree(right);
-        root->right = invertBinaryTree(left);
+    TreeNode *left = root->left;
+    TreeNode *right = root->right;
+    root->left = invertBinaryTree(right);
+    root->right = invertBinaryTree(left);
 
-        return root;
-    }
+    return root;
+  }
 };
 
 #endif //LEETCODE_226_INVERT_BINARY_TREE_HPP

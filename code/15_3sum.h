@@ -22,71 +22,72 @@
 #include <algorithm>
 
 namespace leetcode {
-    class ThreeSum {
-    public:
-        static std::vector<std::vector<int>> threeSum(std::vector<int>& nums) {
-            std::vector<std::vector<int>> threeRes;
-            if (nums.size() < 3) return threeRes;
-            for (std::size_t i = 0; i < nums.size() - 1; ++i) {
-                std::vector<std::vector<int>> twoRes;
-                TwoSum(nums, i + 1, -nums[i], twoRes);
-                for (int j = 0; j < twoRes.size(); ++j) {
-                    std::vector<int> res{twoRes[j][0], twoRes[j][1], nums[i]};
-                    std::sort(res.begin(), res.end());
-                    threeRes.push_back(res);
-                }
-            }
-            std::sort(threeRes.begin(), threeRes.end(),
-                      [](const std::vector<int> &a, const std::vector<int> &b) {
-                          return (a[0] < b[0]) ||
-                                 (a[0] == b[0] && a[1] < b[1]);
-                      });
-            auto end = std::unique(threeRes.begin(), threeRes.end(),
-                                   [](const std::vector<int> &a, const std::vector<int> &b) {
-                                       return (a[0] == b[0] && a[1] == b[1]);
-                                   });
-            return std::vector<std::vector<int>>(threeRes.begin(), end);
-        }
+class ThreeSum {
+ public:
+  static std::vector<std::vector<int>> threeSum(std::vector<int> &nums) {
+    std::vector<std::vector<int>> threeRes;
+    if (nums.size() < 3) return threeRes;
+    for (std::size_t i = 0; i < nums.size() - 1; ++i) {
+      std::vector<std::vector<int>> twoRes;
+      TwoSum(nums, i + 1, -nums[i], twoRes);
+      for (int j = 0; j < twoRes.size(); ++j) {
+        std::vector<int> res{twoRes[j][0], twoRes[j][1], nums[i]};
+        std::sort(res.begin(), res.end());
+        threeRes.push_back(res);
+      }
+    }
+    std::sort(threeRes.begin(), threeRes.end(),
+              [](const std::vector<int> &a, const std::vector<int> &b) {
+                return (a[0] < b[0]) ||
+                    (a[0] == b[0] && a[1] < b[1]);
+              });
+    auto end = std::unique(threeRes.begin(), threeRes.end(),
+                           [](const std::vector<int> &a, const std::vector<int> &b) {
+                             return (a[0] == b[0] && a[1] == b[1]);
+                           });
+    return std::vector<std::vector<int>>(threeRes.begin(), end);
+  }
 
-        static std::vector<std::vector<int>> threeSum2(std::vector<int>& nums) {
-            std::vector<std::vector<int>> threeRes;
-            if (nums.size() < 3) return threeRes;
-            std::sort(nums.begin(), nums.end());
-            for (int i = 0; i < nums.size() - 2; ++i) {
-                if (i == 0 || (i > 0 && nums[i] != nums[i-1])) {
-                    int lo = i + 1, hi = (int)nums.size() - 1, sum = -nums[i];
-                    while (lo < hi) {
-                        if (nums[lo] + nums[hi] == sum) {
-                            threeRes.emplace_back(std::vector<int>{nums[i], nums[lo], nums[hi]});
-                            while (lo < hi && nums[lo] == nums[lo+1]) lo++;
-                            while (lo < hi && nums[hi] == nums[hi-1]) hi--;
-                            lo++; hi--;
-                        } else if (nums[lo] + nums[hi] < sum) {
-                            lo++;
-                        } else {
-                            hi--;
-                        }
-                    }
-                }
-            }
-            return threeRes;
+  static std::vector<std::vector<int>> threeSum2(std::vector<int> &nums) {
+    std::vector<std::vector<int>> threeRes;
+    if (nums.size() < 3) return threeRes;
+    std::sort(nums.begin(), nums.end());
+    for (int i = 0; i < nums.size() - 2; ++i) {
+      if (i == 0 || (i > 0 && nums[i] != nums[i - 1])) {
+        int lo = i + 1, hi = (int) nums.size() - 1, sum = -nums[i];
+        while (lo < hi) {
+          if (nums[lo] + nums[hi] == sum) {
+            threeRes.emplace_back(std::vector<int>{nums[i], nums[lo], nums[hi]});
+            while (lo < hi && nums[lo] == nums[lo + 1]) lo++;
+            while (lo < hi && nums[hi] == nums[hi - 1]) hi--;
+            lo++;
+            hi--;
+          } else if (nums[lo] + nums[hi] < sum) {
+            lo++;
+          } else {
+            hi--;
+          }
         }
+      }
+    }
+    return threeRes;
+  }
 
-    private:
+ private:
 
-        static void TwoSum(std::vector<int>& nums, std::size_t startIdx, int x, std::vector<std::vector<int>>& res) {
-            std::unordered_set<int> set;
-            for (std::size_t i = startIdx; i < nums.size(); ++i) {
-                int target = x - nums[i];
-                if (set.find(target) !=  set.end()) {
-                    // Found
-                    std::vector<int> singleRes{std::min(nums[i], target), std::max(nums[i], target)};
-                    res.push_back(singleRes);
-                } else {
-                    set.insert(nums[i]);
-                }
-            }
-        }
+  static void TwoSum(std::vector<int> &nums, std::size_t startIdx, int x, std::vector<std::vector<int>> &res) {
+    std::unordered_set<int> set;
+    for (std::size_t i = startIdx; i < nums.size(); ++i) {
+      int target = x - nums[i];
+      if (set.find(target) != set.end()) {
+        // Found
+        std::vector<int> singleRes{std::min(nums[i], target), std::max(nums[i], target)};
+        res.push_back(singleRes);
+      } else {
+        set.insert(nums[i]);
+      }
+    }
+  }
 };
 }
 

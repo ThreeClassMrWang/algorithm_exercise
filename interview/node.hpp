@@ -10,10 +10,10 @@
 namespace interview {
 
 struct Node {
-    int value;
-    std::shared_ptr<Node> left, right;
+  int value;
+  std::shared_ptr<Node> left, right;
 
-    Node(int v) : value(v), left(nullptr), right(nullptr) { }
+  Node(int v) : value(v), left(nullptr), right(nullptr) {}
 };
 
 }

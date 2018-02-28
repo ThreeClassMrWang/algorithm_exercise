@@ -12,35 +12,35 @@
 #include <vector>
 
 namespace leetcode {
-    class ContainerWithMostWater {
-    public:
-        static int maxArea1(std::vector<int>& height) {
-            if (height.size() < 2) return -1;
-            int max = 0;
-            for (int i = 1; i < height.size(); ++i) {
-                for (int j = 0; j < i; j++) {
-                    int area = (i - j) * std::min(height[i], height[j]);
-                    if (area > max)
-                        max = area;
-                }
-            }
-            return max;
-        }
+class ContainerWithMostWater {
+ public:
+  static int maxArea1(std::vector<int> &height) {
+    if (height.size() < 2) return -1;
+    int max = 0;
+    for (int i = 1; i < height.size(); ++i) {
+      for (int j = 0; j < i; j++) {
+        int area = (i - j) * std::min(height[i], height[j]);
+        if (area > max)
+          max = area;
+      }
+    }
+    return max;
+  }
 
-        // Avoid repeated search
-        static int maxArea2(std::vector<int>& height) {
-            if (height.size() < 2) return -1;
-            int max = 0;
-            int lidx = 0, ridx = (int)height.size() - 1;
-            while (lidx < ridx) {
-                int area = (ridx - lidx) * std::min(height[lidx], height[ridx]);
-                if (area > max) max = area;
-                if (height[lidx] < height[ridx]) lidx++;
-                else ridx--;
-            }
-            return max;
-        }
-    };
+  // Avoid repeated search
+  static int maxArea2(std::vector<int> &height) {
+    if (height.size() < 2) return -1;
+    int max = 0;
+    int lidx = 0, ridx = (int) height.size() - 1;
+    while (lidx < ridx) {
+      int area = (ridx - lidx) * std::min(height[lidx], height[ridx]);
+      if (area > max) max = area;
+      if (height[lidx] < height[ridx]) lidx++;
+      else ridx--;
+    }
+    return max;
+  }
+};
 }
 
 #endif //LEETCODE_11_CONTAINER_WITH_MOST_WATER_H

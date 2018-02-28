@@ -14,25 +14,25 @@
 namespace algorithm {
 
 class Topological {
-public:
-    explicit Topological(const std::shared_ptr<Digraph>& graph) :
-            directedCycle_(graph), depthFirstOrder_(graph), cycle_(directedCycle_.hasCycle()) {}
+ public:
+  explicit Topological(const std::shared_ptr<Digraph> &graph) :
+      directedCycle_(graph), depthFirstOrder_(graph), cycle_(directedCycle_.hasCycle()) {}
 
-    bool isCycle() const noexcept { return cycle_; }
+  bool isCycle() const noexcept { return cycle_; }
 
-    const std::stack<int>& preOrder() {
-        if (!cycle_) return reversePost_;
+  const std::stack<int> &preOrder() {
+    if (!cycle_) return reversePost_;
 
-        if (reversePost_.empty())
-            reversePost_ = depthFirstOrder_.reversePost();
-        return reversePost_;
-    }
+    if (reversePost_.empty())
+      reversePost_ = depthFirstOrder_.reversePost();
+    return reversePost_;
+  }
 
-private:
-    DirectedCycle directedCycle_;
-    DepthFirstOrder depthFirstOrder_;
-    bool cycle_;
-    std::stack<int> reversePost_;
+ private:
+  DirectedCycle directedCycle_;
+  DepthFirstOrder depthFirstOrder_;
+  bool cycle_;
+  std::stack<int> reversePost_;
 };
 
 }

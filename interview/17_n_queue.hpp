@@ -18,38 +18,38 @@
 namespace interview {
 
 class NQueue {
-public:
-    static std::size_t find(std::size_t n) {
-        if (n == 0) return 0;
-        std::vector<std::size_t> record(n, 0);
-        return find(n, record, 0);
+ public:
+  static std::size_t find(std::size_t n) {
+    if (n == 0) return 0;
+    std::vector<std::size_t> record(n, 0);
+    return find(n, record, 0);
+  }
+
+ private:
+  static std::size_t find(std::size_t n, std::vector<std::size_t> &record, std::size_t i) {
+    if (i == n) return 1;
+
+    std::size_t res = 0;
+    for (std::size_t k{0}; k < n; ++k) {
+      if (isValid(record, i, k)) {
+        record[i] = k;
+        res += find(n, record, i + 1);
+      }
     }
 
-private:
-    static std::size_t find(std::size_t n, std::vector<std::size_t>& record, std::size_t i) {
-        if (i == n) return 1;
+    return res;
+  }
 
-        std::size_t res = 0;
-        for (std::size_t k{0}; k < n; ++k) {
-            if (isValid(record, i, k)) {
-                record[i] = k;
-                res += find(n, record, i + 1);
-            }
-        }
-
-        return res;
+  static bool isValid(const std::vector<std::size_t> &record, std::size_t i, std::size_t j) {
+    for (std::size_t k{0}; k < i; ++k) {
+      /// 这里谨慎使用 std::size_t, 涉及到减法运算这里的类型自动转换就很麻烦
+      /// 以后无论如何只使用 ssize_t 切记！！！
+      if (j == record[k] || std::abs((ssize_t) i - (ssize_t) k) == std::abs((ssize_t) j - (ssize_t) record[k]))
+        return false;
     }
 
-    static bool isValid(const std::vector<std::size_t>& record, std::size_t i, std::size_t j) {
-        for (std::size_t k{0}; k < i; ++k) {
-            /// 这里谨慎使用 std::size_t, 涉及到减法运算这里的类型自动转换就很麻烦
-            /// 以后无论如何只使用 ssize_t 切记！！！
-            if (j == record[k] || std::abs((ssize_t)i - (ssize_t)k) == std::abs((ssize_t)j - (ssize_t)record[k]))
-                return false;
-        }
-
-        return true;
-    }
+    return true;
+  }
 };
 
 }

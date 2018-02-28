@@ -20,27 +20,27 @@
 namespace interview {
 
 class SubarrayMaxLength {
-public:
-    static ssize_t find(const std::vector<int>& arr, int k) {
-        if (arr.empty()) return 0;
+ public:
+  static ssize_t find(const std::vector<int> &arr, int k) {
+    if (arr.empty()) return 0;
 
-        std::unordered_map<int, ssize_t> map;
-        map[0] = -1;
+    std::unordered_map<int, ssize_t> map;
+    map[0] = -1;
 
-        int sum{0};
-        ssize_t len{0};
-        for (ssize_t i = 0; i < arr.size(); ++i) {
-            sum += arr[i];
-            auto it = map.find(sum - k);
-            if (it != map.end())
-                len = std::max(len, i - it->second);
-            it = map.find(sum);
-            if (it == map.end())
-                map[sum] = i;
-        }
-
-        return len;
+    int sum{0};
+    ssize_t len{0};
+    for (ssize_t i = 0; i < arr.size(); ++i) {
+      sum += arr[i];
+      auto it = map.find(sum - k);
+      if (it != map.end())
+        len = std::max(len, i - it->second);
+      it = map.find(sum);
+      if (it == map.end())
+        map[sum] = i;
     }
+
+    return len;
+  }
 
 };
 

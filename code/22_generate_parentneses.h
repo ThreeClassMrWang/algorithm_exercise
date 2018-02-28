@@ -22,25 +22,25 @@
 
 namespace leetcode {
 class GenerateParentesis {
-public:
-    static std::vector<std::string> generateParentesis(int n) {
-        if (n == 0) return {""};        // or {}
-        std::vector<std::string> vec;
-        generateParentesis(vec, "", 0, 0, n);
-        return vec;
+ public:
+  static std::vector<std::string> generateParentesis(int n) {
+    if (n == 0) return {""};        // or {}
+    std::vector<std::string> vec;
+    generateParentesis(vec, "", 0, 0, n);
+    return vec;
+  }
+
+  static void generateParentesis(std::vector<std::string> &vec, std::string str, int open, int close, int max) {
+    if (str.length() == max * 2) {
+      vec.push_back(str);
+      return;
     }
 
-    static void generateParentesis(std::vector<std::string> &vec, std::string str, int open, int close, int max) {
-        if (str.length() == max * 2) {
-            vec.push_back(str);
-            return;
-        }
-
-        if (open < max)
-            generateParentesis(vec, std::move(str + "("), open + 1, close, max);
-        if (close < open)
-            generateParentesis(vec, std::move(str + ")"), open, close + 1, max);
-    }
+    if (open < max)
+      generateParentesis(vec, std::move(str + "("), open + 1, close, max);
+    if (close < open)
+      generateParentesis(vec, std::move(str + ")"), open, close + 1, max);
+  }
 };
 }
 

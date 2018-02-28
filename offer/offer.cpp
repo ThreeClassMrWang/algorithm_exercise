@@ -5,8 +5,8 @@
 #include "offer.hpp"
 
 namespace offer {
-const std::string& version() {
-    static std::string ver{"v1.0"};
-    return ver;
+const std::string &version() {
+  static std::string ver{"v1.0"};
+  return ver;
 }
 }

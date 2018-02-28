@@ -16,29 +16,29 @@
 namespace interview {
 
 class MaxLengthSubArray {
-public:
-    static std::size_t find(const std::vector<int>& v, int k) {
-        if (v.empty() || k <= 0)
-            return 0;
+ public:
+  static std::size_t find(const std::vector<int> &v, int k) {
+    if (v.empty() || k <= 0)
+      return 0;
 
-        int sum{v[0]};
-        std::size_t left{0}, right{0}, len{0};
+    int sum{v[0]};
+    std::size_t left{0}, right{0}, len{0};
 
-        while (right < v.size()) {
-            if (sum == k) {
-                len = std::max(len, right - left + 1);
-                sum -= v[left++];
-            } else if (sum > k) {
-                sum -= v[left++];
-            } else {
-                ++right;
-                if (right == v.size()) break;
-                sum += v[right];
-            }
-        }
-
-        return len;
+    while (right < v.size()) {
+      if (sum == k) {
+        len = std::max(len, right - left + 1);
+        sum -= v[left++];
+      } else if (sum > k) {
+        sum -= v[left++];
+      } else {
+        ++right;
+        if (right == v.size()) break;
+        sum += v[right];
+      }
     }
+
+    return len;
+  }
 };
 
 }

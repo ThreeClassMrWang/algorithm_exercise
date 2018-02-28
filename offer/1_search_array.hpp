@@ -14,25 +14,25 @@
 namespace offer {
 
 class SearchArray {
-public:
-    static bool searchArray(int target, std::vector<std::vector<int>> array) {
-        if (array.empty() || (!array.empty() && array[0].empty()))
-            return false;
+ public:
+  static bool searchArray(int target, std::vector<std::vector<int>> array) {
+    if (array.empty() || (!array.empty() && array[0].empty()))
+      return false;
 
-        for(const auto& row : array) {
-            if (target >= *row.begin() && target <= *(row.end()-1)) {
-                ssize_t lo = 0, hi = row.size() - 1;
-                while (lo <= hi) {
-                    ssize_t mid = lo + (hi - lo) / 2;
-                    if (row[mid] == target) return true;
-                    else if (row[mid] > target) hi = mid - 1;
-                    else lo = mid + 1;
-                }
-            }
+    for (const auto &row : array) {
+      if (target >= *row.begin() && target <= *(row.end() - 1)) {
+        ssize_t lo = 0, hi = row.size() - 1;
+        while (lo <= hi) {
+          ssize_t mid = lo + (hi - lo) / 2;
+          if (row[mid] == target) return true;
+          else if (row[mid] > target) hi = mid - 1;
+          else lo = mid + 1;
         }
-
-        return false;
+      }
     }
+
+    return false;
+  }
 
 };
 

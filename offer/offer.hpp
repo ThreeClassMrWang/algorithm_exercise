@@ -8,8 +8,7 @@
 #include <string>
 
 namespace offer {
-const std::string& version();
+const std::string &version();
 }
-
 
 #endif //LEETCODE_OFFER_HPP

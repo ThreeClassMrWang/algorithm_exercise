@@ -19,22 +19,22 @@
 #include <vector>
 
 namespace leetcode {
-    class RemoveDuplicatesFromSortedArray {
-    public:
-        static int removeDuplicates(std::vector<int>& nums) {
-            if (nums.empty())
-                return 0;
+class RemoveDuplicatesFromSortedArray {
+ public:
+  static int removeDuplicates(std::vector<int> &nums) {
+    if (nums.empty())
+      return 0;
 
-            int i = 0, j = 1;
-            std::size_t len = nums.size();
-            for (; j < len; ++j) {
-                while(nums[j] == nums[j-1] && j < len) ++j;
-                if (j < len)
-                    nums[++i] = nums[j];
-            }
-            return (i+1);
-        }
-    };
+    int i = 0, j = 1;
+    std::size_t len = nums.size();
+    for (; j < len; ++j) {
+      while (nums[j] == nums[j - 1] && j < len) ++j;
+      if (j < len)
+        nums[++i] = nums[j];
+    }
+    return (i + 1);
+  }
+};
 }
 
 #endif //LEETCODE_26_REMOVE_DUPLICATES_FROM_SORTED_ARRAY_H

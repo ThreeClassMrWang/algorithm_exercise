@@ -24,503 +24,502 @@
 #include "1_search_array.hpp"
 
 TEST(_test, hello) {
-    std::string s = "Hello GoogleTest!";
-    EXPECT_EQ(s, "Hello GoogleTest!");
-    std::cout << s << std::endl;
-    std::cout << "Version of Leetcode is: " << leetcode::version() << std::endl;
+  std::string s = "Hello GoogleTest!";
+  EXPECT_EQ(s, "Hello GoogleTest!");
+  std::cout << s << std::endl;
+  std::cout << "Version of Leetcode is: " << leetcode::version() << std::endl;
 }
 
 TEST(longest_common_prefix, test) {
-    std::vector<std::string> in;
-    std::string res;
+  std::vector<std::string> in;
+  std::string res;
 
-    in = {};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "");
+  in = {};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "");
 
-    in = {"a"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "a");
+  in = {"a"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "a");
 
-    in = {"a", "a"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "a");
+  in = {"a", "a"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "a");
 
-    in = {"abc", "abc"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "abc");
+  in = {"abc", "abc"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "abc");
 
-    in = {"abc", "abcde"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "abc");
+  in = {"abc", "abcde"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "abc");
 
-    in = {"abchug ", "abcde"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "abc");
+  in = {"abchug ", "abcde"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "abc");
 
-    in = {"hudgs", "tffsc"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "");
+  in = {"hudgs", "tffsc"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "");
 
-    in = {"", "ggjs"};
-    res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
-    EXPECT_EQ(res, "");
+  in = {"", "ggjs"};
+  res = leetcode::LongestCommonPrefix::longestCommonPrefix(in);
+  EXPECT_EQ(res, "");
 }
 
 TEST(valid_parentness, test) {
-    std::string in;
-    bool res;
+  std::string in;
+  bool res;
 
-    in = "[";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = "[";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = ")";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = ")";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = "()";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, true);
+  in = "()";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, true);
 
-    in = ")(";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = ")(";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = "(((()))";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = "(((()))";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = "((())))";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = "((())))";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = "(]";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = "(]";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = "([)]";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, false);
+  in = "([)]";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, false);
 
-    in = "()[]{}";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, true);
+  in = "()[]{}";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, true);
 
-    in = "([]){([])}";
-    res = leetcode::ValidParentheses::isValid(in);
-    EXPECT_EQ(res, true);
+  in = "([]){([])}";
+  res = leetcode::ValidParentheses::isValid(in);
+  EXPECT_EQ(res, true);
 }
 
 TEST(merge_two_sorted_lists, test) {
-    typedef leetcode::MergeTwoSortedLists::ListNode ListNode;
-    constexpr int N = 10;
-    std::vector<ListNode *> vectors;
-    for (int i = 0; i < N; i++)
-        vectors.push_back(new ListNode(i));
+  typedef leetcode::MergeTwoSortedLists::ListNode ListNode;
+  constexpr int N = 10;
+  std::vector<ListNode *> vectors;
+  for (int i = 0; i < N; i++)
+    vectors.push_back(new ListNode(i));
 
-    ListNode *l1, *l2, *res;
+  ListNode *l1, *l2, *res;
 
-    l1 = nullptr;
-    l2 = nullptr;
-    res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
-    EXPECT_EQ(nullptr, res);
+  l1 = nullptr;
+  l2 = nullptr;
+  res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
+  EXPECT_EQ(nullptr, res);
 
-    l1 = vectors[1];
-    l2 = nullptr;
-    res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
-    EXPECT_EQ(1, res->val);
+  l1 = vectors[1];
+  l2 = nullptr;
+  res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
+  EXPECT_EQ(1, res->val);
 
-    l1 = vectors[2];
-    l2 = vectors[1];
-    res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
-    EXPECT_EQ(1, res->val);
-    EXPECT_EQ(2, res->next->val);
+  l1 = vectors[2];
+  l2 = vectors[1];
+  res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
+  EXPECT_EQ(1, res->val);
+  EXPECT_EQ(2, res->next->val);
 
-    l1 = vectors[2];
-    l1->next = vectors[6];
-    l2 = vectors[1];
-    l2->next = vectors[3];
-    l2->next->next = vectors[5];
-    res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
-    EXPECT_EQ(1, res->val);
-    EXPECT_EQ(2, res->next->val);
-    EXPECT_EQ(3, res->next->next->val);
-    EXPECT_EQ(5, res->next->next->next->val);
-    EXPECT_EQ(6, res->next->next->next->next->val);
+  l1 = vectors[2];
+  l1->next = vectors[6];
+  l2 = vectors[1];
+  l2->next = vectors[3];
+  l2->next->next = vectors[5];
+  res = leetcode::MergeTwoSortedLists::mergeTwoLists(l1, l2);
+  EXPECT_EQ(1, res->val);
+  EXPECT_EQ(2, res->next->val);
+  EXPECT_EQ(3, res->next->next->val);
+  EXPECT_EQ(5, res->next->next->next->val);
+  EXPECT_EQ(6, res->next->next->next->next->val);
 
-    // Delete
-    for (auto &node : vectors)
-        delete node;
+  // Delete
+  for (auto &node : vectors)
+    delete node;
 }
 
 TEST(remove_duplicates_from_sorted_array, test) {
-    std::vector<int> in;
-    int res;
+  std::vector<int> in;
+  int res;
 
-    in = {};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 0);
+  in = {};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 0);
 
-    in = {1};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 1);
-    EXPECT_EQ(in[0], 1);
+  in = {1};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 1);
+  EXPECT_EQ(in[0], 1);
 
-    in = {1, 1, 1};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 1);
-    EXPECT_EQ(in[0], 1);
+  in = {1, 1, 1};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 1);
+  EXPECT_EQ(in[0], 1);
 
-    in = {1, 2, 3};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 3);
-    EXPECT_EQ(in[0], 1);
-    EXPECT_EQ(in[1], 2);
-    EXPECT_EQ(in[2], 3);
+  in = {1, 2, 3};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 3);
+  EXPECT_EQ(in[0], 1);
+  EXPECT_EQ(in[1], 2);
+  EXPECT_EQ(in[2], 3);
 
-    in = {1, 1, 2};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 2);
-    EXPECT_EQ(in[0], 1);
-    EXPECT_EQ(in[1], 2);
+  in = {1, 1, 2};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 2);
+  EXPECT_EQ(in[0], 1);
+  EXPECT_EQ(in[1], 2);
 
-    in = {1, 2, 2};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 2);
-    EXPECT_EQ(in[0], 1);
-    EXPECT_EQ(in[1], 2);
+  in = {1, 2, 2};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 2);
+  EXPECT_EQ(in[0], 1);
+  EXPECT_EQ(in[1], 2);
 
-    in = {1, 1, 2, 2};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 2);
-    EXPECT_EQ(in[0], 1);
-    EXPECT_EQ(in[1], 2);
+  in = {1, 1, 2, 2};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 2);
+  EXPECT_EQ(in[0], 1);
+  EXPECT_EQ(in[1], 2);
 
-    in = {1, 1, 1, 2, 2};
-    res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
-    EXPECT_EQ(res, 2);
-    EXPECT_EQ(in[0], 1);
-    EXPECT_EQ(in[1], 2);
+  in = {1, 1, 1, 2, 2};
+  res = leetcode::RemoveDuplicatesFromSortedArray::removeDuplicates(in);
+  EXPECT_EQ(res, 2);
+  EXPECT_EQ(in[0], 1);
+  EXPECT_EQ(in[1], 2);
 }
 
 TEST(add_two_number, test) {
-    typedef leetcode::AddTwoNumbers::ListNode ListNode;
-    constexpr int N = 10;
-    std::vector<ListNode *> vectors;
-    for (int i = 0; i < N; i++)
-        vectors.push_back(new ListNode(i));
+  typedef leetcode::AddTwoNumbers::ListNode ListNode;
+  constexpr int N = 10;
+  std::vector<ListNode *> vectors;
+  for (int i = 0; i < N; i++)
+    vectors.push_back(new ListNode(i));
 
-    ListNode *l1, *l2, *res;
+  ListNode *l1, *l2, *res;
 
-    l1 = nullptr;
-    l2 = nullptr;
-    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
-    EXPECT_EQ(res, nullptr);
+  l1 = nullptr;
+  l2 = nullptr;
+  res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+  EXPECT_EQ(res, nullptr);
 
-    // Reset
-    for (int i = 0; i < N; i++) {
-        vectors[i]->val = i;
-        vectors[i]->next = nullptr;
-    }
+  // Reset
+  for (int i = 0; i < N; i++) {
+    vectors[i]->val = i;
+    vectors[i]->next = nullptr;
+  }
 
-    l1 = vectors[1];
-    l1->next = vectors[2];
-    l1->next->next = vectors[3];
-    l2 = nullptr;
-    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
-    EXPECT_EQ(res->val, 1);
-    EXPECT_EQ(res->next->val, 2);
-    EXPECT_EQ(res->next->next->val, 3);
+  l1 = vectors[1];
+  l1->next = vectors[2];
+  l1->next->next = vectors[3];
+  l2 = nullptr;
+  res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+  EXPECT_EQ(res->val, 1);
+  EXPECT_EQ(res->next->val, 2);
+  EXPECT_EQ(res->next->next->val, 3);
 
-    // Reset
-    for (int i = 0; i < N; i++) {
-        vectors[i]->val = i;
-        vectors[i]->next = nullptr;
-    }
+  // Reset
+  for (int i = 0; i < N; i++) {
+    vectors[i]->val = i;
+    vectors[i]->next = nullptr;
+  }
 
-    l1 = vectors[1];
-    l1->next = vectors[2];
-    l1->next->next = vectors[3];
-    l2 = vectors[4];
-    l2->next = vectors[5];
-    l2->next->next = vectors[6];
-    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
-    EXPECT_EQ(res->val, 5);
-    EXPECT_EQ(res->next->val, 7);
-    EXPECT_EQ(res->next->next->val, 9);
+  l1 = vectors[1];
+  l1->next = vectors[2];
+  l1->next->next = vectors[3];
+  l2 = vectors[4];
+  l2->next = vectors[5];
+  l2->next->next = vectors[6];
+  res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+  EXPECT_EQ(res->val, 5);
+  EXPECT_EQ(res->next->val, 7);
+  EXPECT_EQ(res->next->next->val, 9);
 
-    // Reset
-    for (int i = 0; i < N; i++) {
-        vectors[i]->val = i;
-        vectors[i]->next = nullptr;
-    }
+  // Reset
+  for (int i = 0; i < N; i++) {
+    vectors[i]->val = i;
+    vectors[i]->next = nullptr;
+  }
 
-    l1 = vectors[9];
-    l2 = vectors[1];
-    res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
-    EXPECT_EQ(res->val, 0);
-    EXPECT_EQ(res->next->val, 1);
+  l1 = vectors[9];
+  l2 = vectors[1];
+  res = leetcode::AddTwoNumbers::addTwoNumbers(l1, l2);
+  EXPECT_EQ(res->val, 0);
+  EXPECT_EQ(res->next->val, 1);
 
 
-    // Delete
-    for (auto &node : vectors)
-        delete node;
+  // Delete
+  for (auto &node : vectors)
+    delete node;
 }
 
 TEST(longest_substring_without_repeating_characters, test) {
-    std::string in;
-    int len;
+  std::string in;
+  int len;
 
-    in = "";
-    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
-    EXPECT_EQ(len, 0);
+  in = "";
+  len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+  EXPECT_EQ(len, 0);
 
-    in = "1111";
-    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
-    EXPECT_EQ(len, 1);
+  in = "1111";
+  len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+  EXPECT_EQ(len, 1);
 
-    in = "123123";
-    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
-    EXPECT_EQ(len, 3);
+  in = "123123";
+  len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+  EXPECT_EQ(len, 3);
 
-    in = "1231234";
-    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
-    EXPECT_EQ(len, 4);
+  in = "1231234";
+  len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+  EXPECT_EQ(len, 4);
 
-    in = "123434567";
-    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
-    EXPECT_EQ(len, 5);
+  in = "123434567";
+  len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+  EXPECT_EQ(len, 5);
 
-    in = "dvdf";
-    len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
-    EXPECT_EQ(len, 3);
+  in = "dvdf";
+  len = leetcode::LongestSubstringWithoutRepeatingCharacters::lengthOfLongestSubstring(in);
+  EXPECT_EQ(len, 3);
 }
 
 TEST(longest_palindromic_substring, test) {
-    std::string in, res;
+  std::string in, res;
 
-    in = "";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, "");
+  in = "";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, "");
 
-    in = "a";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, "a");
+  in = "a";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, "a");
 
-    in = "babad";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, "bab");
+  in = "babad";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, "bab");
 
-    in = "cbbd";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, "bb");
+  in = "cbbd";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, "bb");
 
-    in = "aaaaa";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, in);
+  in = "aaaaa";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, in);
 
-    in = "bananas";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, "anana");
+  in = "bananas";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, "anana");
 
-    in = "tattarrattat";
-    res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
-    EXPECT_EQ(res, in);
+  in = "tattarrattat";
+  res = leetcode::LongestPalindromicSubstring::longestPalindrome(in);
+  EXPECT_EQ(res, in);
 }
 
 TEST(zigzag_conversion, test) {
-    std::string in = "PAYPALISHIRING";
-    std::string res = leetcode::ZigZagConversion::convert(in, 3);
-    EXPECT_EQ(res, "PAHNAPLSIIGYIR");
+  std::string in = "PAYPALISHIRING";
+  std::string res = leetcode::ZigZagConversion::convert(in, 3);
+  EXPECT_EQ(res, "PAHNAPLSIIGYIR");
 
-    in = "ABC";
-    res = leetcode::ZigZagConversion::convert(in, 2);
-    EXPECT_EQ(res, "ACB");
+  in = "ABC";
+  res = leetcode::ZigZagConversion::convert(in, 2);
+  EXPECT_EQ(res, "ACB");
 
-    in = "ABCD";
-    res = leetcode::ZigZagConversion::convert(in, 2);
-    EXPECT_EQ(res, "ACBD");
+  in = "ABCD";
+  res = leetcode::ZigZagConversion::convert(in, 2);
+  EXPECT_EQ(res, "ACBD");
 
-    in = "A";
-    res = leetcode::ZigZagConversion::convert(in, 1);
-    EXPECT_EQ(res, "A");
+  in = "A";
+  res = leetcode::ZigZagConversion::convert(in, 1);
+  EXPECT_EQ(res, "A");
 }
 
 TEST(string_to_integer, test) {
-    std::string in;
-    int res;
+  std::string in;
+  int res;
 
-    in = "";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 0);
+  in = "";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 0);
 
-    in = "   12ugvbsdb";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 12);
+  in = "   12ugvbsdb";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 12);
 
-    in = "jsbd-176327  ";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 0);
+  in = "jsbd-176327  ";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 0);
 
-    in = "1-29ue28676832";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 1);
+  in = "1-29ue28676832";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 1);
 
-    in = "-7562kshkhd";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, -7562);
+  in = "-7562kshkhd";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, -7562);
 
-    in = "826738923647829368923";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 0);
+  in = "826738923647829368923";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 0);
 
-    in = "+-2";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 0);
+  in = "+-2";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 0);
 
-    in = "   - 321";
-    res = leetcode::StringToInteger::myAtoi(in);
-    EXPECT_EQ(res, 0);
+  in = "   - 321";
+  res = leetcode::StringToInteger::myAtoi(in);
+  EXPECT_EQ(res, 0);
 }
 
 TEST(container_with_most_water, test) {
-    std::vector<int> in;
-    int res;
+  std::vector<int> in;
+  int res;
 
-    in = {1};
-    res = leetcode::ContainerWithMostWater::maxArea2(in);
-    EXPECT_EQ(res, -1);
+  in = {1};
+  res = leetcode::ContainerWithMostWater::maxArea2(in);
+  EXPECT_EQ(res, -1);
 
-    in = {1, 2};
-    res = leetcode::ContainerWithMostWater::maxArea2(in);
-    EXPECT_EQ(res, 1);
+  in = {1, 2};
+  res = leetcode::ContainerWithMostWater::maxArea2(in);
+  EXPECT_EQ(res, 1);
 
-    in = {0, 1};
-    res = leetcode::ContainerWithMostWater::maxArea2(in);
-    EXPECT_EQ(res, 0);
+  in = {0, 1};
+  res = leetcode::ContainerWithMostWater::maxArea2(in);
+  EXPECT_EQ(res, 0);
 
-    in = {1, 2, 3, 2};
-    res = leetcode::ContainerWithMostWater::maxArea2(in);
-    EXPECT_EQ(res, 4);
+  in = {1, 2, 3, 2};
+  res = leetcode::ContainerWithMostWater::maxArea2(in);
+  EXPECT_EQ(res, 4);
 
 }
 
 TEST(integer_to_roman, test) {
-    int in;
-    std::string res;
+  int in;
+  std::string res;
 
-    in = 39;
-    res = leetcode::IntegerToRoman::intToRoman(in);
-    EXPECT_EQ(res, "XXXIX");
+  in = 39;
+  res = leetcode::IntegerToRoman::intToRoman(in);
+  EXPECT_EQ(res, "XXXIX");
 }
 
 TEST(three_sum, test) {
-    std::vector<int> in {-1, 0, 1, 2, -1, -4};
-    std::vector<std::vector<int>> res = leetcode::ThreeSum::threeSum2(in);
-    EXPECT_EQ(res.size(), 2);
+  std::vector<int> in{-1, 0, 1, 2, -1, -4};
+  std::vector<std::vector<int>> res = leetcode::ThreeSum::threeSum2(in);
+  EXPECT_EQ(res.size(), 2);
 }
 
 TEST(three_sum_closet, test) {
-    std::vector<int> in {-1, 2, 1, -4};
-    int target = 1;
-    int res = leetcode::ThreeSumCloset::threeSumClosest(in, 1);
-    EXPECT_EQ(res, 2);
+  std::vector<int> in{-1, 2, 1, -4};
+  int res = leetcode::ThreeSumCloset::threeSumClosest(in, 1);
+  EXPECT_EQ(res, 2);
 }
 
 TEST(letter_combinations, test) {
-    std::string in;
+  std::string in;
 
-    in = "23";
-    auto res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 9);
+  in = "23";
+  auto res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 9);
 
-    in = "01";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 1);
-    EXPECT_EQ(res[0], " ");
+  in = "01";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 1);
+  EXPECT_EQ(res[0], " ");
 
-    in = "239";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 36);
+  in = "239";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 36);
 
-    in = "";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 0);
+  in = "";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 0);
 
-    in = "1";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 0);
+  in = "1";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 0);
 
-    in = "123";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 9);
+  in = "123";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 9);
 
-    in = "10";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 1);
-    EXPECT_EQ(res[0], " ");
+  in = "10";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 1);
+  EXPECT_EQ(res[0], " ");
 
-    in = "023";
-    res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
-    EXPECT_EQ(res.size(), 9);
+  in = "023";
+  res = leetcode::LetterCombinationsOfAPhoneNumber::letterCombinations(in);
+  EXPECT_EQ(res.size(), 9);
 }
 
 TEST(four_sum, test) {
-    std::vector<int> in;
-    std::vector<std::vector<int>> res;
+  std::vector<int> in;
+  std::vector<std::vector<int>> res;
 
-    in = {};
-    res = leetcode::FourSum::fourSum(in, 0);
-    EXPECT_EQ(res.empty(), true);
+  in = {};
+  res = leetcode::FourSum::fourSum(in, 0);
+  EXPECT_EQ(res.empty(), true);
 
-    in = {1, 0, -1, 0, -2, 2};
-    res = leetcode::FourSum::fourSum(in, 0);
-    EXPECT_EQ(res.size(), 3);
+  in = {1, 0, -1, 0, -2, 2};
+  res = leetcode::FourSum::fourSum(in, 0);
+  EXPECT_EQ(res.size(), 3);
 }
 
 TEST(search_array, test) {
-    std::vector<std::vector<int>> in;
-    int target;
-    bool res;
+  std::vector<std::vector<int>> in;
+  int target;
+  bool res;
 
-    in = {};
-    target = 10;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, false);
+  in = {};
+  target = 10;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, false);
 
-    in = { {1, 2, 3}, {3, 4, 5}};
-    target = 3;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, true);
+  in = {{1, 2, 3}, {3, 4, 5}};
+  target = 3;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, true);
 
-    in = {{}};
-    target = 3;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, false);
+  in = {{}};
+  target = 3;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, false);
 
-    in = {{1}};
-    target = 10;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, false);
+  in = {{1}};
+  target = 10;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, false);
 
-    in = {{1}};
-    target = 1;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, true);
+  in = {{1}};
+  target = 1;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, true);
 
-    in = {{2,5,7,8,10}, {3,4,5,6,7}};
-    target = 0;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, false);
+  in = {{2, 5, 7, 8, 10}, {3, 4, 5, 6, 7}};
+  target = 0;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, false);
 
-    in = {{1,2,8,9},{2,4,9,12},{4,7,10,13},{6,8,11,15}};
-    target = 7;
-    res = offer::SearchArray::searchArray(target, in);
-    EXPECT_EQ(res, true);
+  in = {{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}};
+  target = 7;
+  res = offer::SearchArray::searchArray(target, in);
+  EXPECT_EQ(res, true);
 }
 
-GTEST_API_ int main(int argc, char** argv){
-    testing::InitGoogleTest(&argc, argv);
-    return RUN_ALL_TESTS();
+GTEST_API_ int main(int argc, char **argv) {
+  testing::InitGoogleTest(&argc, argv);
+  return RUN_ALL_TESTS();
 }

@@ -13,30 +13,30 @@
 namespace algorithm {
 
 class DirectedDFS {
-public:
-    explicit DirectedDFS(int s) {
-        dfs(s);
-    }
+ public:
+  explicit DirectedDFS(int s) {
+    dfs(s);
+  }
 
-    explicit DirectedDFS(const std::vector<int>& sources) {
-        for (const auto& s : sources)
-            dfs(s);
-    }
+  explicit DirectedDFS(const std::vector<int> &sources) {
+    for (const auto &s : sources)
+      dfs(s);
+  }
 
-    bool marked(int v) {
-        return marked_[v];
-    }
+  bool marked(int v) {
+    return marked_[v];
+  }
 
-private:
-    std::vector<bool> marked_;
-    std::shared_ptr<Digraph> graph_;
+ private:
+  std::vector<bool> marked_;
+  std::shared_ptr<Digraph> graph_;
 
-    void dfs(int v) {
-        marked_[v] = true;
-        for (const auto& w : graph_->adj(v))
-            if (!marked_[w])
-                dfs(w);
-    }
+  void dfs(int v) {
+    marked_[v] = true;
+    for (const auto &w : graph_->adj(v))
+      if (!marked_[w])
+        dfs(w);
+  }
 };
 
 }

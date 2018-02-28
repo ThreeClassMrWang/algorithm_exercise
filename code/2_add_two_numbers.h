@@ -15,55 +15,55 @@
 // FIXME : will cause memory leak, input list can not be free correctly.
 
 namespace leetcode {
-    class AddTwoNumbers {
-    public:
-        struct ListNode {
-            int val;
-            ListNode *next;
-            ListNode(int x) : val(x), next(nullptr) {}
-        };
+class AddTwoNumbers {
+ public:
+  struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(nullptr) {}
+  };
 
-        static ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-            if (l1 == nullptr) return l2;
-            else if (l2 == nullptr) return l1;
+  static ListNode *addTwoNumbers(ListNode *l1, ListNode *l2) {
+    if (l1 == nullptr) return l2;
+    else if (l2 == nullptr) return l1;
 
-            ListNode *head = l1, *tail = head;
-            int count = 0;
+    ListNode *head = l1, *tail = head;
+    int count = 0;
 
-            ListNode *p1 = l1, *p2 = l2;
-            for (; p1 != nullptr && p2 != nullptr; p1 = p1->next, p2 = p2->next) {
-                int sum = (p1->val + p2->val + count);
-                p1->val = sum % 10;
-                count = sum / 10;
-                tail = p1;
-            }
+    ListNode *p1 = l1, *p2 = l2;
+    for (; p1 != nullptr && p2 != nullptr; p1 = p1->next, p2 = p2->next) {
+      int sum = (p1->val + p2->val + count);
+      p1->val = sum % 10;
+      count = sum / 10;
+      tail = p1;
+    }
 
-            if (p2 != nullptr) {
-                tail->next = p2;
-                for (; p2 != nullptr; p2 = p2->next) {
-                    int sum = p2->val + count;
-                    p2->val = sum % 10;
-                    count = sum / 10;
-                    tail = p2;
-                }
-            } else if (p1 != nullptr){
-                tail->next = p1;
-                for (; p1 != nullptr; p1 = p1->next) {
-                    int sum = p1->val + count;
-                    p1->val = sum % 10;
-                    count = sum / 10;
-                    tail = p1;
-                }
-            }
+    if (p2 != nullptr) {
+      tail->next = p2;
+      for (; p2 != nullptr; p2 = p2->next) {
+        int sum = p2->val + count;
+        p2->val = sum % 10;
+        count = sum / 10;
+        tail = p2;
+      }
+    } else if (p1 != nullptr) {
+      tail->next = p1;
+      for (; p1 != nullptr; p1 = p1->next) {
+        int sum = p1->val + count;
+        p1->val = sum % 10;
+        count = sum / 10;
+        tail = p1;
+      }
+    }
 
-            if (count != 0) {
-                l2->val = count;
-                l2->next = nullptr;
-                tail->next = l2;
-            }
-            return head;
-        }
-    };
+    if (count != 0) {
+      l2->val = count;
+      l2->next = nullptr;
+      tail->next = l2;
+    }
+    return head;
+  }
+};
 }
 
 #endif //LEETCODE_2_ADD_TWO_NUMBERS_H

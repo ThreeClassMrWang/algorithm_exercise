@@ -17,36 +17,36 @@
 //Try to do this in one pass.
 
 struct ListNode {
-    int val;
-    ListNode* next;
+  int val;
+  ListNode *next;
 
-    ListNode(int x) : val(x), next(nullptr) { }
+  ListNode(int x) : val(x), next(nullptr) {}
 };
 
 namespace leetcode {
 class RemoveNthFromEnd {
-public:
-    static ListNode* removeNthFromEnd(ListNode* head, int n) {
-        if (!head) return nullptr;
+ public:
+  static ListNode *removeNthFromEnd(ListNode *head, int n) {
+    if (!head) return nullptr;
 
-        ListNode* target = nullptr;
-        ListNode* p = head;
-        for (int i = 0; p; p = p->next, i++) {
-            if (i == n)
-                target = head;
-            else if (i > n )
-                target = target->next;
-        }
-
-        // Given n is correct, this is delete head
-        // maybe memory leak, but i don't known how to delete this.
-        if (!target) {
-            return head->next;
-        } else {
-            target->next = target->next->next;
-            return head;
-        }
+    ListNode *target = nullptr;
+    ListNode *p = head;
+    for (int i = 0; p; p = p->next, i++) {
+      if (i == n)
+        target = head;
+      else if (i > n)
+        target = target->next;
     }
+
+    // Given n is correct, this is delete head
+    // maybe memory leak, but i don't known how to delete this.
+    if (!target) {
+      return head->next;
+    } else {
+      target->next = target->next->next;
+      return head;
+    }
+  }
 };
 }
 

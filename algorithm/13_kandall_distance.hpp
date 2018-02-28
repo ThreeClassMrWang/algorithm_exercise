@@ -14,24 +14,24 @@
 namespace algorithm {
 
 class KandallDistance {
-public:
-    static int calcutate(const std::vector<int>& a, const std::vector<int>& b) {
-        std::unordered_map<int, int> map;
-        int i = 0;
-        for (const auto& item : a)
-            map[item] = i++;
+ public:
+  static int calcutate(const std::vector<int> &a, const std::vector<int> &b) {
+    std::unordered_map<int, int> map;
+    int i = 0;
+    for (const auto &item : a)
+      map[item] = i++;
 
-        std::vector<int> c(b.size(), 0);
-        i = 0;
-        for (const auto& item : b)
-            c[i++] = map[item];
+    std::vector<int> c(b.size(), 0);
+    i = 0;
+    for (const auto &item : b)
+      c[i++] = map[item];
 
-        int sum = 0;
-        for (i = 0; i < b.size(); ++i)
-            if (c[i] > i)
-                sum += (c[i] - i);
-        return sum;
-    }
+    int sum = 0;
+    for (i = 0; i < b.size(); ++i)
+      if (c[i] > i)
+        sum += (c[i] - i);
+    return sum;
+  }
 };
 
 }

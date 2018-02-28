@@ -19,28 +19,28 @@
 #include <string>
 
 namespace leetcode {
-    class ZigZagConversion {
-    public:
-        static std::string convert(const std::string &s, int numRows) {
-            if (s.empty())
-                return std::string("");
-            if (numRows == 1)
-                return s;
-            std::string res(s);
-            int resIdx = 0;
-            for (int i = 0; i < numRows; ++i) {
-                int idx = i;
-                int step = (2 * numRows - 2);
-                while(idx < s.length()){
-                    res[resIdx++] = s[idx];
-                    if (i != 0 && i != numRows-1 && idx - 2 * i + step < s.length())
-                        res[resIdx++] = s[idx - 2 * i + step];
-                    idx += step;
-                }
-            }
-            return res;
-        }
-    };
+class ZigZagConversion {
+ public:
+  static std::string convert(const std::string &s, int numRows) {
+    if (s.empty())
+      return std::string("");
+    if (numRows == 1)
+      return s;
+    std::string res(s);
+    int resIdx = 0;
+    for (int i = 0; i < numRows; ++i) {
+      int idx = i;
+      int step = (2 * numRows - 2);
+      while (idx < s.length()) {
+        res[resIdx++] = s[idx];
+        if (i != 0 && i != numRows - 1 && idx - 2 * i + step < s.length())
+          res[resIdx++] = s[idx - 2 * i + step];
+        idx += step;
+      }
+    }
+    return res;
+  }
+};
 }
 
 #endif //LEETCODE_6_ZIGZAG_CONVERSION_H

@@ -16,44 +16,44 @@
 namespace interview {
 
 class MaxPublicSubString {
-public:
-    static std::string find(const std::string& str1, const std::string& str2) {
-        if (str1.empty() || str2.empty()) return std::string();
+ public:
+  static std::string find(const std::string &str1, const std::string &str2) {
+    if (str1.empty() || str2.empty()) return std::string();
 
-        size_t str1Len{str1.size()}, str2Len{str2.size()};
-        std::vector<std::vector<size_t>> dp(str1Len, std::vector<size_t>(str2Len, 0));
+    size_t str1Len{str1.size()}, str2Len{str2.size()};
+    std::vector<std::vector<size_t>> dp(str1Len, std::vector<size_t>(str2Len, 0));
 
-        for (ssize_t row{0}; row < str1Len; ++row)
-            dp[row][0] = 0;
-        for (ssize_t col{1}; col < str2Len; ++col)
-            dp[0][col] = 0;
+    for (ssize_t row{0}; row < str1Len; ++row)
+      dp[row][0] = 0;
+    for (ssize_t col{1}; col < str2Len; ++col)
+      dp[0][col] = 0;
 
-        for (ssize_t row{1}; row < str1Len; ++row) {
-            for (ssize_t col{1}; col < str2Len; ++col) {
-                if (str1[row] == str2[col])
-                    dp[row][col] = dp[row-1][col-1] + 1;
-                else
-                    dp[row][col] = 0;
-            }
-        }
-
-        return getSubString(str1, str2, dp);
+    for (ssize_t row{1}; row < str1Len; ++row) {
+      for (ssize_t col{1}; col < str2Len; ++col) {
+        if (str1[row] == str2[col])
+          dp[row][col] = dp[row - 1][col - 1] + 1;
+        else
+          dp[row][col] = 0;
+      }
     }
 
-private:
-    static std::string getSubString(const std::string& str1, const std::string& str2,
-        const std::vector<std::vector<size_t>>& dp) {
-        std::size_t max = 0;
-        ssize_t rowMax{0}, colMax{0};
-        for (ssize_t row = 0; row < str1.size(); ++row) {
-            for (ssize_t col = 0; col < str2.size(); ++col) {
-                if (dp[row][col] > max)
-                    max = dp[row][col], rowMax = row, colMax = col;
-            }
-        }
+    return getSubString(str1, str2, dp);
+  }
 
-        return std::string(str1.begin() + rowMax + 1 - max, str1.begin() + rowMax + 1);
+ private:
+  static std::string getSubString(const std::string &str1, const std::string &str2,
+                                  const std::vector<std::vector<size_t>> &dp) {
+    std::size_t max = 0;
+    ssize_t rowMax{0}, colMax{0};
+    for (ssize_t row = 0; row < str1.size(); ++row) {
+      for (ssize_t col = 0; col < str2.size(); ++col) {
+        if (dp[row][col] > max)
+          max = dp[row][col], rowMax = row, colMax = col;
+      }
     }
+
+    return std::string(str1.begin() + rowMax + 1 - max, str1.begin() + rowMax + 1);
+  }
 };
 
 }

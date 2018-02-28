@@ -9,7 +9,7 @@
 
 namespace algorithm {
 
-const std::string& version();
+const std::string &version();
 
 }
 
