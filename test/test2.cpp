@@ -401,6 +401,115 @@ TEST(dijkstra, test) {
   }
 }
 
+#include "001_select_sort.hpp"
+
+TEST(select_sort_001, test) {
+  std::vector<int> in;
+
+  SortUtil::genRandom<1000>(in);
+  SelectSort001::selectSort(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+}
+
+#include "002_insert_sort.hpp"
+
+TEST(insert_test_002, test) {
+  std::vector<int> in;
+  SortUtil::genRandom<1000>(in);
+  InsertSort002::insertSort(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+}
+
+#include "003_shell_sort.hpp"
+
+TEST(shell_sort_003, test) {
+  std::vector<int> in;
+  SortUtil::genRandom<1000>(in);
+  ShellSort003::shellSort003(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+}
+
+#include "004_merge_sort.hpp"
+
+TEST(merge_sort_004, test) {
+  std::vector<int> in;
+  SortUtil::genRandom<1000>(in);
+  MergeSort004::mergeSort(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+
+  SortUtil::genRandom<1000>(in);
+  MergeSort004::mergeSort2(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+}
+
+#include "005_quick_sort.hpp"
+
+TEST(quick_sort_005, test) {
+  std::vector<int> in;
+  SortUtil::genRandom<1000>(in);
+  QuickSort005::sort(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+
+  SortUtil::genRandom<1000>(in);
+  QuickSort005::sort3Way(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+}
+
+#include "006_priority_heap.hpp"
+#include <queue>
+
+TEST(priority_heap_006, test) {
+  std::vector<int> in, out;
+  SortUtil::genRandom<100>(in);
+
+  class Large {
+   public:
+    bool operator()(const int& a, const int& b) {
+      return a >= b;
+    }
+  };
+
+  PriorityHeapSort006<int, Large> minHeap;
+
+  for (const auto& i : in)
+    minHeap.insert(i);
+
+  while (!minHeap.empty())
+    out.push_back(minHeap.top()), minHeap.pop();
+
+  EXPECT_EQ(true, SortUtil::checkSorted(out));
+
+  // 优先队列
+  SortUtil::genRandom<1000>(in);
+  std::priority_queue<int, std::vector<int>, std::less<int>> minQueue;
+  for (const auto& i : in)
+    minQueue.push(i);
+
+  while (!minHeap.empty())
+    out.push_back(minQueue.top()), minQueue.top();
+
+  EXPECT_EQ(true, SortUtil::checkSorted(out));
+}
+
+#include "007_heap_sort.hpp"
+
+TEST(heap_sort_007, test) {
+  std::vector<int> in;
+
+  SortUtil::genRandom<100>(in);
+  HeapSort007::sort(in);
+  EXPECT_EQ(true, SortUtil::checkSorted(in));
+}
+
+#include "008_selectK.hpp"
+
+TEST(selectK_008, test) {
+  std::vector<int> in = {1, 8, 26, 938, 3263, 8930, 67672, 1152, 35};
+  int res = SelectK008::selectK(in, 3);
+  EXPECT_EQ(35, res);
+}
+
+
 GTEST_API_ int main(int argc, char **argv) {
   testing::InitGoogleTest(&argc, argv);
   return RUN_ALL_TESTS();

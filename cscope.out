@@ -1,0 +1,80 @@
+cscope 15 $HOME/Documents/learn/leetcode               0000000552
+	@CMakeLists.txt
+
+1 
+	$cmake_mšimum_»quœed
+(
+VERSION
+ 3.5)
+
+2 
+	$´ojeù
+(
+L“tcode
+ 
+CXX
+)
+
+4 
+	$£t
+(
+CMAKE_CXX_STANDARD
+ 11)
+
+5 
+	`£t
+(
+CMAKE_CXX_FLAGS
+ "${CMAKE_CXX_FLAGS} -Wno-sign-compare")
+
+7 
+	$add_subdœeùÜy
+(
+‹¡
+)
+
+8 
+	$add_subdœeùÜy
+(
+code
+)
+
+9 
+	$add_subdœeùÜy
+(
+š‹rv›w
+)
+
+10 
+	$add_subdœeùÜy
+(
+ofãr
+)
+
+11 
+	$add_subdœeùÜy
+(
+®gÜ™hm
+)
+
+12 
+	`add_subdœeùÜy
+(
+huawei
+)
+
+	@README.md
+
+6 åŒ…å«å¦‚ä¸‹å†…å®¹ï¼š1. ç®—æ³•ï¼ˆç¬¬4ç‰ˆï¼‰ 2. ã€Šç¨‹åºå‘˜ä»£ç é¢è¯•æŒ‡å—ã€‹ 3. 
+Ë‘code
+
+
+	@
+1
+.
+1
+/usr/include
+2
+25
+CMakeLists.txt
+README.md

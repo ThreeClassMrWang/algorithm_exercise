@@ -43,7 +43,7 @@ class SortUtil {
 
   template<std::size_t SIZE>
   static void genRandom(std::vector<int> &v) {
-    std::default_random_engine e;
+    std::default_random_engine e(static_cast<unsigned long>(time(nullptr)));
     std::uniform_int_distribution<int> u(0, 10000);
 
     for (std::size_t i = 0; i < SIZE; ++i)
